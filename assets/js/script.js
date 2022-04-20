@@ -25,7 +25,7 @@ function mostrarResultado (){
     //alterar 2 pela quantidade de quiz que o usuario colocar
     if(finalizarQuiz === 2){
     document.querySelector(".resultado-quiz").classList.remove("escondido");
-    document.querySelector(".botao-home").classList.add("escondido")
+    document.querySelector(".botao-home").classList.add("escondido");
     }
 }
 
@@ -38,6 +38,12 @@ function resetarPaginaAtual (){
     document.location.reload(true);
     const elemento = document.querySelector(".sobreporImagem");
     elemento.scrollIntoView();
+}
+
+function voltarHome () {
+    document.querySelector(".quiz-top-bar").classList.add("escondido");
+    document.querySelector(".tela2").classList.add("escondido");
+    document.querySelector(".tela1").classList.remove("escondido");
 }
 
 //TELA2

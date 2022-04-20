@@ -1,3 +1,7 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -131,9 +135,7 @@ h2 {
   background-color: crimson;
 }
 
-.escondido {
-  display: none;
-}
+
 
   /* O que você tinha feito até aqui */
 
@@ -226,6 +228,7 @@ h2 {
 }
 
 .alter-quiz p, .alter-quizOk p {
+  margin: 15px 0;
   font-size: 20px;
   font-weight: bold;
 }
@@ -283,12 +286,20 @@ h2 {
 }
 
 
+.escondido {
+  display: none;
+}
+
 
 
 @media screen and (max-width: 1100px) {
   .container-quiz, .resultado-quiz {
       width: 100%;
       padding: 0;
+  }
+
+  .espacamento, .resultado-quiz {
+    padding: 10px;
   }
 
   .quiz-top > p {
