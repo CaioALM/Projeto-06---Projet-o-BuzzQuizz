@@ -4,6 +4,7 @@
 let finalizarQuiz = 0;
 const TIME_2S = 2 * 1000;
 let verificarRespostas;
+let receberObjeto;
 
 
 function selecionarQuiz (elemento) {
@@ -14,7 +15,6 @@ function selecionarQuiz (elemento) {
     let selecionado = document.querySelectorAll(".alter-quizOk>div");
     document.querySelector(".scrollar-aqui").classList.remove("scrollar-aqui");
     
-
     for(let i = 0; i < selecionado.length; i++){
         selecionado[i].classList.add("opacidade-white");
         selecionado[i].removeAttribute("onclick");
@@ -30,22 +30,9 @@ function selecionarQuiz (elemento) {
             trocarCor[i].classList.add("vermelho");
         }
     }
-    console.log(trocarCor)
-
-
-
-
-
 
     setTimeout(scrollar, TIME_2S);
     mostrarResultado();
-}
-
-function mostrarResultado (){
-    if(finalizarQuiz === verificarRespostas){
-    document.querySelector(".resultado-quiz").classList.remove("escondido");
-    document.querySelector(".botao-home").classList.add("escondido");
-    }
 }
 
 function scrollar () {
@@ -76,6 +63,7 @@ function buscarQuizzId () {
 }
 
 function renderizarQuizz (elemento) {
+    receberObjeto = elemento;
     let topBar = document.querySelector(".quiz-top-bar");
     topBar.innerHTML = `
         <img class="" src="${elemento.data.image}" alt="">
@@ -114,7 +102,6 @@ function renderizarQuizzPerguntas (elemento) {
     while(cont < perguntasQuiz.length){
         const arrPerguntas = elemento.data.questions[cont].answers;
         arrPerguntas.sort(embaralhar);
-        console.log(arrPerguntas)
         for(let i = 0; i < elemento.data.questions[i].answers.length; i++) {
             perguntasQuiz[cont].innerHTML += `
                 <div onclick="selecionarQuiz(this)">
@@ -127,5 +114,50 @@ function renderizarQuizzPerguntas (elemento) {
         cont ++;
     }
 }
+
+
+
+function mostrarResultado (){
+    if(finalizarQuiz === verificarRespostas){
+        document.querySelector(".resultado-quiz").classList.remove("escondido");
+        document.querySelector(".botao-home").classList.add("escondido");
+
+        let contadorCertos = 0;
+    
+        let resultado = document.querySelectorAll(".selecionado.opacidade-white > .verificacao");
+        for(let i = 0; i < resultado.length; i++){
+            if(resultado[i].innerHTML === "true"){
+                contadorCertos++;
+            }
+        }
+
+        let conta = (contadorCertos * 100) / verificarRespostas;
+        let arr;
+        for(let i = 0; i < receberObjeto.data.levels.length; i++){
+            if(conta >= receberObjeto.data.levels[i].minValue){
+                arr = receberObjeto.data.levels[i];
+            }
+        }
+
+        let corpoResultado = document.querySelector(".resultado-quiz");
+        corpoResultado.innerHTML = `
+            <div class="quiz-top" style="background-color:#434CA0;">
+                <p>${Math.round(conta)}% de acerto: ${arr.title}</p>
+            </div>
+            <div class="resposta-quiz">
+                <img src="${arr.image}" alt="">
+                <p>${arr.text}</p>
+            </div>
+            <div class="scrollar-aqui"></div>
+            <div class="botoes">
+                <div class="botao-reiniciar" onclick="resetarPaginaAtual()">Reiniciar Quizz</div>
+                <div class="botao-home" onclick="voltarHome()">Voltar pra home</div>
+            </div>
+        `;
+    }
+}
+
+
+
 
 buscarQuizzId ();
