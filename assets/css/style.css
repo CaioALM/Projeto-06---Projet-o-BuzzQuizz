@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+  }
+  .top-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    height: 69px;
+    width: 100%;
+  
+    background-color: #ec362d;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  
+    z-index: 1;
+  }
+  
+  h1 {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #ffffff;
+  }
+  h3 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+  
+    color: #b9b9b9;
+  
+    margin: 15px auto;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: #e5e5e5;
+  }
+  
+  .meusQuizzes-container-vazio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+    width: 1051px;
+    height: 181px;
+    margin-top: 146px;
+  
+    border-radius: 15px;
+  
+    border-width: thin;
+    border-style: dashed;
+    border-color: #b9b9b9;
+    background-color: #fafafa;
+  }
+  
+  .buttonCriar {
+    margin-top: 10px;
+  
+    width: 151px;
+    height: 40px;
+  
+    background: #fafafa;
+    border: 1px dashed #ec362d;
+  
+    border-radius: 50px;
+  
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  
+    color: #ec362d;
+  }
+  
+  h2 {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 23px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+  }
+  
+  .todosQuizzes-container {
+    width: 1051px;
+    height: 600px;
+    margin-top: 146px;
+  
+    background-color: blue;
+  }
+  .quizzesFundo {
+    display: flex;
+    flex-wrap: wrap;
+  
+    width: auto;
+    height: auto;
+    background-color: mediumorchid;
+  
+    margin: 20px;
+  }
+  
+  .quizzes {
+    margin: 15px;
+    width: 340px;
+    height: 181px;
+    background-color: crimson;
+  }
+  .escondido {
+    display: hidden;
+  }
+  
