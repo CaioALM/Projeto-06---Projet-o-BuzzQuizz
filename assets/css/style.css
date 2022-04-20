@@ -281,12 +281,19 @@ h2 {
   color: #818181;
 }
 
-.container-quiz .botao-home {
+.tela2 .botao-home {
   margin: 0 auto 40px auto;
 }
 
+.verde {
+  color: green;
+}
 
-.escondido {
+.vermelho {
+  color: red;
+}
+
+.escondido, .verificacao {
   display: none;
 }
 
