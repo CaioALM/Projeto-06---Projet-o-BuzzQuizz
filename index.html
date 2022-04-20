@@ -14,41 +14,138 @@
     <title>Buzz Quizz</title>
   </head>
   <body>
-    <div>
-      <div class="top-bar">
-        <h1>BuzzQuizz</h1>
-      </div>
-      <div class="container">
-        <!-- conteúdo da pagina -->
-        <div class="meusQuizzes-container-vazio">
-            <h3>Você não criou nenhum <br> quizz ainda :(</h3>
-            <div class="buttonCriar" onclick="criarQuizz">Criar Quizz</div>
+
+    <header>
+        <div class="top-bar">
+            <h1>BuzzQuizz</h1>
         </div>
-        <div class="todosQuizzes-container">
+        <div class="quiz-top-bar escondido">
+            <img class="escondido" src="./Imagens_teste/Rectangle 42.png" alt="">
+            <div class="sobreporImagem escondido"></div>
+            <p>O quão Potterhead é você?</p>
+        </div>
+    </header>
+
+
+    <main>
+      <!-- TELA1 -->
+      <div class="tela1">
+        <div class="container">
+          <!-- conteúdo da pagina -->
+          <div class="meusQuizzes-container-vazio">
+              <h3>Você não criou nenhum <br> quizz ainda :(</h3>
+              <div class="buttonCriar" onclick="criarQuizz">Criar Quizz</div>
+          </div>
+
+          <div class="todosQuizzes-container">
           <!--Quiz que virá do servidor-->
 
-          <div>
-            <h2>Todos os Quizzes</h2>
-          </div>
-          <div class="quizzesFundo">
-            <div class="quizzes">
-              Todos
+            <div>
+              <h2>Todos os Quizzes</h2>
             </div>
-            <div class="quizzes">
-              Todos
+            <div class="quizzesFundo">
+              <div class="quizzes">
+                Todos
+              </div>
+              <div class="quizzes">
+                Todos
+              </div>
+              <div class="quizzes">
+                Todos
+              </div>
+              <div class="quizzes">
+                Todos
+              </div>
+              <div class="quizzes">
+                Todos
+              </div>
             </div>
-            <div class="quizzes">
-              Todos
-            </div>
-            <div class="quizzes">
-              Todos
-            </div>
-            <div class="quizzes">
-              Todos
           </div>
         </div>
       </div>
-    </div>
+      <!-- TELA1 -->
+
+      <!-- TELA2 -->
+
+      <div class="tela2 escondido">   
+        <div class="container-quiz">
+            <!-- renderizar js -->
+            <!-- teste -->
+            <div class="espacamento">
+                <div class="quiz-top" style="background-color:#434CA0;">
+                    <p>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                </div>
+                <div class="alter-quiz">
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 3.png" alt="">
+                        <p>Gatíneo</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 4.png" alt="">
+                        <p>Ratata</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 7.png" alt="">
+                        <p>Sapo gordo</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 8.png" alt="">
+                        <p>Mustela putorius (o Furão)</p>
+                    </div>
+                </div>
+                <div class="scrollar-aqui"></div>
+            </div>
+            
+            
+            <div class="espacamento">
+                <div class="quiz-top" style="background-color:#434CA0;">
+                    <p>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</p>
+                </div>
+                <div class="alter-quiz">
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 3.png" alt="">
+                        <p>Gatíneo</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 4.png" alt="">
+                        <p>Ratata</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 7.png" alt="">
+                        <p>Sapo gordo</p>
+                    </div>
+                    <div onclick="selecionarQuiz(this)">
+                        <img src="./imagens_teste/image 8.png" alt="">
+                        <p>Mustela putorius (o Furão)</p>
+                    </div>
+                </div>
+                <div class="scrollar-aqui"></div>
+            </div>
+            <!-- teste -->
+            <!-- renderizar js -->
+            <div class="botao-home">Voltar pra home</div>
+        </div>
+        <div class="resultado-quiz escondido">
+            <div class="quiz-top" style="background-color:#434CA0;">
+                <p>88% de acerto: Você é praticamente um aluno de Hogwarts!</p>
+            </div>
+            <div class="resposta-quiz">
+                    <img src="./imagens_teste/image 10.png" alt="">
+                    <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
+            </div>
+            <div class="scrollar-aqui"></div>
+            <div class="botoes">
+                <div class="botao-reiniciar" onclick="resetarPaginaAtual()">Reiniciar Quizz</div>
+                <div class="botao-home">Voltar pra home</div>
+            </div>
+        </div>
+      </div>
+
+
+      <!-- TELA2 -->
+    </main>
+
+
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
