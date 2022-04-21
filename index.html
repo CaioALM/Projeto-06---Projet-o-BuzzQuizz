@@ -19,7 +19,7 @@
         <div class="top-bar">
             <h1>BuzzQuizz</h1>
         </div>
-        <div class="quiz-top-bar">
+        <div class="quiz-top-bar escondido">
 
         </div>
     </header>
@@ -32,7 +32,7 @@
           <!-- conteúdo da pagina -->
           <div class="meusQuizzes-container-vazio">
               <h3>Você não criou nenhum <br> quizz ainda :(</h3>
-              <div class="buttonCriar" onclick="criarQuizz">Criar Quizz</div>
+              <div class="buttonCriar" onclick="criarQuizz()">Criar Quizz</div>
           </div>
 
           <div class="todosQuizzes-container">
@@ -65,7 +65,7 @@
 
       <!-- TELA2 -->
 
-      <div class="tela2 ">   
+      <div class="tela2 escondido">   
         <div class="container-quiz">
 
         </div>
@@ -79,6 +79,31 @@
 
 
       <!-- TELA2 -->
+
+      <!-- TELA3 -->
+
+      <div class="tela3">
+
+        <div class="container-tela3-1">
+          <p>Comece pelo começo</p>
+          <div class="input-tela3-1">
+            <input type="text" placeholder="Título do seu quizz" class="titulo-quiz">
+            <p class="validacaoTitulo escondido">Título deve conter no mínimo 20 e no máximo 65 letras</p>
+            <input type="url" placeholder="URL da imagem do seu quizz" class="url-quiz">
+            <p class="validacaoURL escondido">O valor informado não é uma URL válida</p>
+            <input type="text" placeholder="Quantidade de perguntas do quizz" class="quantidadePerguntas">
+            <p class="validacaoPerguntas escondido">O quizz deve ter no mínimo 3 perguntas</p>
+            <input type="text" placeholder="Quantidade de níveis do quizz" class="quantidadeNiveis">
+            <p class="validacaoNiveis escondido">O quizz deve ter no mínimo 2 níveis</p>
+          </div>
+          <div class="botao-tela3-1" onclick="verificarInput3a()">Prosseguir pra criar perguntas</div>
+        </div>
+
+      </div>
+
+      <!-- TELA3 -->
+
+
     </main>
 
 

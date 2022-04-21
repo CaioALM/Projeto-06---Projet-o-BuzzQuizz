@@ -157,7 +157,61 @@ function mostrarResultado (){
     }
 }
 
+//buscarQuizzId ();
 
+//TELA 3
+let arrQuizz = {};
+let verificaPergunta;
+let verificaNiveis;
 
+function verificarInput3a() {
+    let verificaTitulo = document.querySelector(".titulo-quiz").value;
+    if (verificaTitulo.length < 20 || verificaTitulo.length > 65){
+       document.querySelector(".validacaoTitulo").classList.remove("escondido");
+       document.querySelector(".titulo-quiz").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoTitulo").classList.add("escondido");
+        document.querySelector(".titulo-quiz").classList.remove("inputErro");
+        let teste = true;
+        arrQuizz.title = verificaTitulo;
+    }  
 
-buscarQuizzId ();
+    let verificaURL = document.querySelector(".url-quiz").value;
+    let teste = validarURL(verificaURL);
+    if (teste === false){
+       document.querySelector(".validacaoURL").classList.remove("escondido");
+       document.querySelector(".url-quiz").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoURL").classList.add("escondido");
+        document.querySelector(".url-quiz").classList.remove("inputErro");
+        let teste1 = true;
+        arrQuizz.image = verificaURL;
+    }
+
+    verificaPergunta = document.querySelector(".quantidadePerguntas").value;
+    if (Number(verificaPergunta) < 3 || isNaN(verificaPergunta)){
+       document.querySelector(".validacaoPerguntas").classList.remove("escondido");
+       document.querySelector(".quantidadePerguntas").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoPerguntas").classList.add("escondido");
+        document.querySelector(".quantidadePerguntas").classList.remove("inputErro");
+        let teste2 = true;
+    }
+
+    verificaNiveis = document.querySelector(".quantidadeNiveis").value;
+    if (Number(verificaNiveis) < 2 || isNaN(verificaNiveis)){
+       document.querySelector(".validacaoNiveis").classList.remove("escondido");
+       document.querySelector(".quantidadeNiveis").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoNiveis").classList.add("escondido");
+        document.querySelector(".quantidadeNiveis").classList.remove("inputErro");
+        let teste3 = true;
+    }
+
+    console.log(arrQuizz)
+}
+
+function validarURL (elemento){
+    let re = /(https?:\/\/(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(:?\d*)\/?([a-z_\/0-9\-#.]*)\??([a-z_\/0-9\-#=&]*)/g;
+    return re.test(elemento);
+}
