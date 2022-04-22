@@ -19,7 +19,7 @@
         <div class="top-bar">
             <h1>BuzzQuizz</h1>
         </div>
-        <div class="quiz-top-bar">
+        <div class="quiz-top-bar escondido">
 
         </div>
     </header>
@@ -32,7 +32,7 @@
           <!-- conteúdo da pagina -->
           <div class="meusQuizzes-container-vazio escondido">
               <h3>Você não criou nenhum <br> quizz ainda :(</h3>
-              <div class="buttonCriar" onclick="criarQuizz">Criar Quizz</div>
+              <div class="buttonCriar" onclick="criarQuizz()">Criar Quizz</div>
           </div>
           <div class="meusQuizzes-container">
             <span><h2>Seus Quizzes</h2><ion-icon name="add-circle"></ion-icon></span> 
@@ -78,7 +78,7 @@
 
       <!-- TELA2 -->
 
-      <div class="tela2 ">   
+      <div class="tela2 escondido">   
         <div class="container-quiz">
 
         </div>
@@ -92,6 +92,91 @@
 
 
       <!-- TELA2 -->
+
+      <!-- TELA3-1 -->
+
+      <div class="tela3 escondido">
+
+        <div class="container-tela3-1">
+          <p>Comece pelo começo</p>
+          <div class="input-tela3-1">
+            <input type="text" placeholder="Título do seu quizz" class="titulo-quiz">
+            <p class="validacaoTitulo escondido">Título deve conter no mínimo 20 e no máximo 65 letras</p>
+            <input type="url" placeholder="URL da imagem do seu quizz" class="url-quiz">
+            <p class="validacaoURL escondido">O valor informado não é uma URL válida</p>
+            <input type="text" placeholder="Quantidade de perguntas do quizz" class="quantidadePerguntas">
+            <p class="validacaoPerguntas escondido">O quizz deve ter no mínimo 3 perguntas</p>
+            <input type="text" placeholder="Quantidade de níveis do quizz" class="quantidadeNiveis">
+            <p class="validacaoNiveis escondido">O quizz deve ter no mínimo 2 níveis</p>
+          </div>
+          <div class="botao-tela3-1" onclick="verificarInput3a()">Prosseguir pra criar perguntas</div>
+        </div>
+
+      </div>
+
+      <!-- TELA3-1 -->
+
+      <!-- TELA3-2 -->
+
+      <div class="tela3-2 ">
+
+        <div class="container-tela3-2">
+
+          <p>Crie suas perguntas</p>
+
+          <div class="rederizarPerguntas">
+
+            <div class="tituloPergunta escondido">
+              <p>Pergunta 1</p>
+              <ion-icon name="create-outline"></ion-icon>
+            </div>
+            <div class="inputPerguntas ">
+
+              <p class="dentroPergunta">Pergunta 1</p>
+              <input type="text" placeholder="Texto da pergunta" class="texto1-pergunta">
+              <p class="validacao1Texto erroP escondido">Texto deve conter no mínimo 20 letras</p>
+              <input type="text" placeholder="Cor de fundo da pergunta" class="cor1-pergunta">
+              <p class="validacao1Cor erroP escondido">Cor deve ser no formato hexadecimal Ex: #EC362D</p>
+              <div class="inputUrlEspac"></div>
+
+              <p class="dentroPergunta">Resposta correta</p>
+              <input type="text" placeholder="Resposta correta" class="reposta1-certa">
+              <p class="validacao1Certo erroP escondido">Texto não pode estar vazio</p>
+              <input type="text" placeholder="URL da imagem" class="urlResp1Certa">
+              <p class="validacao1URLCerto erroP escondido">O valor informado não é uma URL válida</p>
+              <div class="inputUrlEspac"></div>
+
+              <p class="dentroPergunta">Resposta incorreta</p>
+              <input type="text" placeholder="Resposta incorreta 1" class="resposta1-erro1">
+              <p class="validacao1Erro1 erroP escondido">Deve conter pelo menos 1 resposta incorreta</p>
+              <input type="text" placeholder="URL da imagem 1" class="urlResp1Erro1">
+              <p class="validacao1URLErro1 erroP escondido">O valor informado não é uma URL válida</p>
+              <div class="inputUrlEspac"></div>
+
+              <input type="text" placeholder="Resposta incorreta 2" class="resposta1-erro2">
+
+              <input type="text" placeholder="URL da imagem 2" class="urlResp1Erro2">
+              <p class="validacao1URLErro2 erroP escondido">O valor informado não é uma URL válida</p>
+              <div class="inputUrlEspac"></div>
+
+              <input type="text" placeholder="Resposta incorreta 3" class="resposta1-erro3">
+
+              <input type="text" placeholder="URL da imagem 3" class="urlResp1Erro3">
+              <p class="validacao1URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
+            </div>
+
+
+
+          </div>
+
+          <div class="botao-tela3-2" onclick="verificarInput3b()">Prosseguir pra criar níveis</div>
+        </div>
+
+      </div>
+
+      <!-- TELA3-2 -->
+
+
     </main>
 
 

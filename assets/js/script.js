@@ -157,7 +157,288 @@ function mostrarResultado (){
     }
 }
 
+//buscarQuizzId ();
 
+//TELA 3
+let arrQuizz = {};
+let verificaPergunta = 3;
+let verificaNiveis;
+let questions = [];
+let answers = [];
 
+function verificarInput3a() {
+    let teste;
+    let teste1;
+    let teste2;
+    let teste3;
 
-buscarQuizzId ();
+    let verificaTitulo = document.querySelector(".titulo-quiz").value;
+    if (verificaTitulo.length < 20 || verificaTitulo.length > 65){
+       document.querySelector(".validacaoTitulo").classList.remove("escondido");
+       document.querySelector(".titulo-quiz").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoTitulo").classList.add("escondido");
+        document.querySelector(".titulo-quiz").classList.remove("inputErro");
+        teste = true;
+        arrQuizz.title = verificaTitulo;
+    }  
+
+    let verificaURL = document.querySelector(".url-quiz").value;
+    let urlOK = validarURL(verificaURL);
+    if (urlOK === false){
+       document.querySelector(".validacaoURL").classList.remove("escondido");
+       document.querySelector(".url-quiz").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoURL").classList.add("escondido");
+        document.querySelector(".url-quiz").classList.remove("inputErro");
+        teste1 = true;
+        arrQuizz.image = verificaURL;
+    }
+
+    verificaPergunta = document.querySelector(".quantidadePerguntas").value;
+    if (Number(verificaPergunta) < 3 || isNaN(verificaPergunta)){
+       document.querySelector(".validacaoPerguntas").classList.remove("escondido");
+       document.querySelector(".quantidadePerguntas").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoPerguntas").classList.add("escondido");
+        document.querySelector(".quantidadePerguntas").classList.remove("inputErro");
+        teste2 = true;
+    }
+
+    verificaNiveis = document.querySelector(".quantidadeNiveis").value;
+    if (Number(verificaNiveis) < 2 || isNaN(verificaNiveis)){
+       document.querySelector(".validacaoNiveis").classList.remove("escondido");
+       document.querySelector(".quantidadeNiveis").classList.add("inputErro");
+    }else {
+        document.querySelector(".validacaoNiveis").classList.add("escondido");
+        document.querySelector(".quantidadeNiveis").classList.remove("inputErro");
+        teste3 = true;
+    }
+
+    if (teste === true && teste1 === true && teste2 === true && teste3 === true){
+        document.querySelector(".tela3").classList.add("escondido");
+        document.querySelector(".tela3-2").classList.remove("escondido");
+        renderizarPerguntas();
+    }else {
+        alert("Preencha os dados corretamente");
+    }
+
+    console.log(arrQuizz)
+}
+
+function validarURL (elemento){
+    let re = /(https?:\/\/(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9])(:?\d*)\/?([a-z_\/0-9\-#.]*)\??([a-z_\/0-9\-#=&]*)/g;
+    return re.test(elemento);
+}
+
+function validarCor (elemento) {
+    let re = /^#[0-9a-f]{6}/i;
+    return re.test(elemento);
+}
+
+renderizarPerguntas()
+function renderizarPerguntas () {
+    for(let i = 2; i <= verificaPergunta; i++){
+        let renderizaPergunta = document.querySelector(".rederizarPerguntas");
+        renderizaPergunta.innerHTML += `
+        <div class="tituloPergunta escondido">
+        <p>Pergunta ${i}</p>
+        <ion-icon name="create-outline"></ion-icon>
+      </div>
+      <div class="inputPerguntas ">
+
+        <p class="dentroPergunta">Pergunta ${i}</p>
+        <input type="text" placeholder="Texto da pergunta" class="texto${i}-pergunta">
+        <p class="validacao${i}Texto erroP escondido">Texto deve conter no mínimo 20 letras</p>
+        <input type="text" placeholder="Cor de fundo da pergunta" class="cor${i}-pergunta">
+        <p class="validacao${i}Cor erroP escondido">Cor deve ser no formato hexadecimal Ex: #EC362D</p>
+        <div class="inputUrlEspac"></div>
+
+        <p class="dentroPergunta">Resposta correta</p>
+        <input type="text" placeholder="Resposta correta" class="reposta${i}-certa">
+        <p class="validacao${i}Certo erroP escondido">Texto não pode estar vazio</p>
+        <input type="text" placeholder="URL da imagem" class="urlResp${i}Certa">
+        <p class="validacao${i}URLCerto erroP escondido">O valor informado não é uma URL válida</p>
+        <div class="inputUrlEspac"></div>
+
+        <p class="dentroPergunta">Resposta incorreta</p>
+        <input type="text" placeholder="Resposta incorreta 1" class="resposta${i}-erro1">
+        <p class="validacao${i}Erro1 erroP escondido">Deve conter pelo menos 1 resposta incorreta</p>
+        <input type="text" placeholder="URL da imagem 1" class="urlResp${i}Erro1">
+        <p class="validacao${i}URLErro1 erroP escondido">O valor informado não é uma URL válida</p>
+        <div class="inputUrlEspac"></div>
+
+        <input type="text" placeholder="Resposta incorreta 2" class="resposta${i}-erro2">
+
+        <input type="text" placeholder="URL da imagem 2" class="urlResp${i}Erro2">
+        <p class="validacao${i}URLErro2 erroP escondido">O valor informado não é uma URL válida</p>
+        <div class="inputUrlEspac"></div>
+
+        <input type="text" placeholder="Resposta incorreta 3" class="resposta${i}-erro3">
+
+        <input type="text" placeholder="URL da imagem 3" class="urlResp${i}Erro3">
+        <p class="validacao${i}URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
+      </div>
+        `
+    }
+
+}
+
+function verificarInput3b () {
+    let teste;
+    let teste1;
+    let teste2;
+    let teste3;
+    let teste4;
+    let teste5;
+    let teste6;
+    let teste7;
+    let teste8;
+    let teste9;
+    let cont = 0;
+
+    for(let i = 1; i <= verificaPergunta; i++){
+
+    let verificaTexto = document.querySelector(`.texto${i}-pergunta`).value;
+    if (verificaTexto.length < 20){
+       document.querySelector(`.validacao${i}Texto`).classList.remove("escondido");
+       document.querySelector(`.texto${i}-pergunta`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}Texto`).classList.add("escondido");
+        document.querySelector(`.texto${i}-pergunta`).classList.remove("inputErro");
+        teste = true;
+    } 
+
+    let verificaCor = document.querySelector(`.cor${i}-pergunta`).value;
+    let corOK = validarCor(verificaCor);
+    if (corOK === false){
+       document.querySelector(`.validacao${i}Cor`).classList.remove("escondido");
+       document.querySelector(`.cor${i}-pergunta`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}Cor`).classList.add("escondido");
+        document.querySelector(`.cor${i}-pergunta`).classList.remove("inputErro");
+        teste1 = true;
+    }
+
+    let verificaRespCerta = document.querySelector(`.reposta${i}-certa`).value;
+    if (verificaRespCerta.length < 1){
+       document.querySelector(`.validacao${i}Certo`).classList.remove("escondido");
+       document.querySelector(`.reposta${i}-certa`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}Certo`).classList.add("escondido");
+        document.querySelector(`.reposta${i}-certa`).classList.remove("inputErro");
+        teste2 = true;
+    }
+
+    let verificaURLCerto = document.querySelector(`.urlResp${i}Certa`).value;
+    let urlOK = validarURL(verificaURLCerto);
+    if (urlOK === false){
+       document.querySelector(`.validacao${i}URLCerto`).classList.remove("escondido");
+       document.querySelector(`.urlResp${i}Certa`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}URLCerto`).classList.add("escondido");
+        document.querySelector(`.urlResp${i}Certa`).classList.remove("inputErro");
+        teste3 = true;
+    }
+
+    let verificaRespErro1 = document.querySelector(`.resposta${i}-erro1`).value;
+    if (verificaRespErro1.length < 1){
+       document.querySelector(`.validacao${i}Erro1`).classList.remove("escondido");
+       document.querySelector(`.resposta${i}-erro1`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}Erro1`).classList.add("escondido");
+        document.querySelector(`.resposta${i}-erro1`).classList.remove("inputErro");
+        teste4 = true;
+    }
+
+    let verificaURLErro1 = document.querySelector(`.urlResp${i}Erro1`).value;
+    let urlErro1OK = validarURL(verificaURLErro1);
+    if (urlErro1OK === false){
+       document.querySelector(`.validacao${i}URLErro1`).classList.remove("escondido");
+       document.querySelector(`.urlResp${i}Erro1`).classList.add("inputErro");
+    }else {
+        document.querySelector(`.validacao${i}URLErro1`).classList.add("escondido");
+        document.querySelector(`.urlResp${i}Erro1`).classList.remove("inputErro");
+        teste5 = true;
+    }
+
+    let verificaRespErro2 = document.querySelector(`.resposta${i}-erro2`).value;
+    if (verificaRespErro2.length != 0){
+        teste6 = true;
+    }
+
+    let verificaURLErro2 = document.querySelector(`.urlResp${i}Erro2`).value;
+    let urlErro2OK = validarURL(verificaURLErro2);
+    if(verificaURLErro2 != 0) {  
+        if (urlErro2OK === false){
+            document.querySelector(`.validacao${i}URLErro2`).classList.remove("escondido");
+            document.querySelector(`.urlResp${i}Erro2`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}URLErro2`).classList.add("escondido");
+            document.querySelector(`.urlResp${i}Erro2`).classList.remove("inputErro");
+            teste7 = true;
+        }
+    }
+    let verificaRespErro3 = document.querySelector(`.resposta${i}-erro3`).value;
+    if (verificaRespErro3.length != 0){
+        teste8 = true;
+    }
+
+    let verificaURLErro3 = document.querySelector(`.urlResp${i}Erro3`).value;
+    let urlErro3OK = validarURL(verificaURLErro3);
+    if(verificaURLErro3 != 0){   
+        if (urlErro3OK === false){
+            document.querySelector(`.validacao${i}URLErro3`).classList.remove("escondido");
+            document.querySelector(`.urlResp${i}Erro3`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}URLErro3`).classList.add("escondido");
+            document.querySelector(`.urlResp${i}Erro3`).classList.remove("inputErro");
+            teste9 = true;
+        }
+    }
+
+    if(teste2 === true && teste3 === true && teste4 === true && teste5 === true){
+        answers[0] = [{
+            text: verificaRespCerta,
+            image: verificaURLCerto,
+            isCorrectAnswer: true
+        },
+        {
+            text: verificaRespErro1,
+            image: verificaURLErro1,
+            isCorrectAnswer: false
+        },
+        ]
+    }
+
+    if(teste6 === true && teste7 === true){
+        answers[0].push({
+            text: verificaRespErro2,
+            image: verificaURLErro2,
+            isCorrectAnswer: false
+        })        
+    }
+
+    if(teste8 === true && teste9 === true){
+        answers[0].push( {
+            text: verificaRespErro3,
+            image: verificaURLErro3,
+            isCorrectAnswer: false
+        });        
+    }
+
+    if(teste === true && teste1 === true){
+        questions[cont] = [
+            {
+                title: verificaTexto,
+                color: verificaCor,
+                answers: answers[0]
+            }
+        ]
+    }
+    cont++;
+    }
+    arrQuizz.questions = questions;
+    console.log(questions)
+    console.log(arrQuizz)
+}
