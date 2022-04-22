@@ -25,7 +25,6 @@ body {
 }
   
 h1 {
-  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 37px;
@@ -34,7 +33,6 @@ h1 {
 }
 
 h3 {
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -52,7 +50,8 @@ h3 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: #e5e5e5;
+  margin-top: 69px;
+  background: #FAFAFA;
 }
   
 .meusQuizzes-container-vazio {
@@ -63,7 +62,7 @@ h3 {
   
   width: 1051px;
   height: 181px;
-  margin-top: 146px;
+  margin-top: 77px;
   
   border-radius: 15px;
   
@@ -71,6 +70,19 @@ h3 {
   border-style: dashed;
   border-color: #b9b9b9;
   background-color: #fafafa;
+}
+.meusQuizzes-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  width: 1051px;
+  height: 181px;
+  margin-top: 77px;
+  
+  border-radius: 15px;
+  
 }
   
 .buttonCriar {
@@ -115,25 +127,47 @@ h2 {
   height: 600px;
   margin-top: 146px;
   
-  background-color: blue;
+  background-color:#FAFAFA;
+  ;
 }
 
 .quizzesFundo {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   
-  width: auto;
+  width: 1050px;
   height: auto;
-  background-color: mediumorchid;
-  
-  margin: 20px;
+  background-color: #FAFAFA;
+  margin-top: 20px;
 }
   
 .quizzes {
-  margin: 15px;
+  margin-bottom: 15px;
   width: 340px;
   height: 181px;
-  background-color: crimson;
+
+}
+.quizzes img{
+  position: absolute;
+  height: 181px;
+  width: 340px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(image.png);
+border-radius: 5px;
+}
+.textoImagem {
+  position: relative;
+  margin-top: 140px;
+  margin-left: 15px;
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 19px;
+line-height: 22px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
 }
 
 
