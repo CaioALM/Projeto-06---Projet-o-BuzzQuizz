@@ -161,10 +161,11 @@ function mostrarResultado (){
 
 //TELA 3
 let arrQuizz = {};
-let verificaPergunta = 3;
-let verificaNiveis;
+let verificaPergunta;
+let verificaNiveis = 2;
 let questions = [];
 let answers = [];
+let levels = [];
 
 function verificarInput3a() {
     let teste;
@@ -236,50 +237,51 @@ function validarCor (elemento) {
     return re.test(elemento);
 }
 
-renderizarPerguntas()
+
 function renderizarPerguntas () {
     for(let i = 2; i <= verificaPergunta; i++){
         let renderizaPergunta = document.querySelector(".rederizarPerguntas");
         renderizaPergunta.innerHTML += `
-        <div class="tituloPergunta escondido">
-        <p>Pergunta ${i}</p>
-        <ion-icon name="create-outline"></ion-icon>
-      </div>
-      <div class="inputPerguntas ">
+        <div class="alternar">
+        <div class="tituloPergunta" onclick="alternarPerguntas(this)">
+            <p>Pergunta ${i}</p>
+            <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="inputPerguntas escondido">
+            <p class="dentroPergunta">Pergunta ${i}</p>
+            <input type="text" placeholder="Texto da pergunta" class="texto${i}-pergunta">
+            <p class="validacao${i}Texto erroP escondido">Texto deve conter no mínimo 20 letras</p>
+            <input type="text" placeholder="Cor de fundo da pergunta" class="cor${i}-pergunta">
+            <p class="validacao${i}Cor erroP escondido">Cor deve ser no formato hexadecimal Ex: #EC362D</p>
+            <div class="inputUrlEspac"></div>
 
-        <p class="dentroPergunta">Pergunta ${i}</p>
-        <input type="text" placeholder="Texto da pergunta" class="texto${i}-pergunta">
-        <p class="validacao${i}Texto erroP escondido">Texto deve conter no mínimo 20 letras</p>
-        <input type="text" placeholder="Cor de fundo da pergunta" class="cor${i}-pergunta">
-        <p class="validacao${i}Cor erroP escondido">Cor deve ser no formato hexadecimal Ex: #EC362D</p>
-        <div class="inputUrlEspac"></div>
+            <p class="dentroPergunta">Resposta correta</p>
+            <input type="text" placeholder="Resposta correta" class="reposta${i}-certa">
+            <p class="validacao${i}Certo erroP escondido">Texto não pode estar vazio</p>
+            <input type="text" placeholder="URL da imagem" class="urlResp${i}Certa">
+            <p class="validacao${i}URLCerto erroP escondido">O valor informado não é uma URL válida</p>
+            <div class="inputUrlEspac"></div>
 
-        <p class="dentroPergunta">Resposta correta</p>
-        <input type="text" placeholder="Resposta correta" class="reposta${i}-certa">
-        <p class="validacao${i}Certo erroP escondido">Texto não pode estar vazio</p>
-        <input type="text" placeholder="URL da imagem" class="urlResp${i}Certa">
-        <p class="validacao${i}URLCerto erroP escondido">O valor informado não é uma URL válida</p>
-        <div class="inputUrlEspac"></div>
+            <p class="dentroPergunta">Resposta incorreta</p>
+            <input type="text" placeholder="Resposta incorreta 1" class="resposta${i}-erro1">
+            <p class="validacao${i}Erro1 erroP escondido">Deve conter pelo menos 1 resposta incorreta</p>
+            <input type="text" placeholder="URL da imagem 1" class="urlResp${i}Erro1">
+            <p class="validacao${i}URLErro1 erroP escondido">O valor informado não é uma URL válida</p>
+            <div class="inputUrlEspac"></div>
 
-        <p class="dentroPergunta">Resposta incorreta</p>
-        <input type="text" placeholder="Resposta incorreta 1" class="resposta${i}-erro1">
-        <p class="validacao${i}Erro1 erroP escondido">Deve conter pelo menos 1 resposta incorreta</p>
-        <input type="text" placeholder="URL da imagem 1" class="urlResp${i}Erro1">
-        <p class="validacao${i}URLErro1 erroP escondido">O valor informado não é uma URL válida</p>
-        <div class="inputUrlEspac"></div>
+            <input type="text" placeholder="Resposta incorreta 2" class="resposta${i}-erro2">
 
-        <input type="text" placeholder="Resposta incorreta 2" class="resposta${i}-erro2">
+            <input type="text" placeholder="URL da imagem 2" class="urlResp${i}Erro2">
+            <p class="validacao${i}URLErro2 erroP escondido">O valor informado não é uma URL válida</p>
+            <div class="inputUrlEspac"></div>
 
-        <input type="text" placeholder="URL da imagem 2" class="urlResp${i}Erro2">
-        <p class="validacao${i}URLErro2 erroP escondido">O valor informado não é uma URL válida</p>
-        <div class="inputUrlEspac"></div>
+            <input type="text" placeholder="Resposta incorreta 3" class="resposta${i}-erro3">
 
-        <input type="text" placeholder="Resposta incorreta 3" class="resposta${i}-erro3">
-
-        <input type="text" placeholder="URL da imagem 3" class="urlResp${i}Erro3">
-        <p class="validacao${i}URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
-      </div>
-        `
+            <input type="text" placeholder="URL da imagem 3" class="urlResp${i}Erro3">
+            <p class="validacao${i}URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
+        </div>
+        </div>
+        `;
     }
 
 }
@@ -435,10 +437,141 @@ function verificarInput3b () {
                 answers: answers[0]
             }
         ]
+        renderizaNiveis ()
     }
     cont++;
     }
     arrQuizz.questions = questions;
-    console.log(questions)
-    console.log(arrQuizz)
+
 }
+
+
+function alternarPerguntas (elemento) {
+    let checar = elemento.parentNode;
+    let temEscondido = document.querySelector(".alternar .tituloPergunta.escondido");
+    let teste = document.querySelectorAll(".alternar .inputPerguntas");
+    for(let i = 0; i < teste.length; i++){
+        teste[i].classList.add("escondido");
+    }
+    if(temEscondido !== null){
+        temEscondido.classList.remove("escondido");
+    }
+    checar.querySelector(".tituloPergunta").classList.add("escondido");
+    checar.querySelector(".inputPerguntas").classList.remove("escondido");
+
+}
+renderizaNiveis()
+function renderizaNiveis () {
+    for(let i = 2; i <= verificaNiveis; i++){
+        let renderizaNiveis = document.querySelector(".rederizarNiveis");
+        renderizaNiveis.innerHTML += `
+        <div class="alternarNiveis">
+        <div class="tituloNivel " onclick="alternarNiveis(this)">
+          <p>Nível ${i}</p>
+          <ion-icon name="create-outline"></ion-icon>
+        </div>
+        <div class="inputNiveis escondido">
+
+          <p class="dentroPergunta">Nível ${i}</p>
+          <input type="text" placeholder="Título do nível" class="titulo${i}-nivel">
+          <p class="validacao${i}Titulo erroP escondido">Texto deve conter no mínimo 10 letras</p>
+          <input type="text" placeholder="% de acerto mínima" class="minimo${i}-pergunta">
+          <p class="validacao${i}minimo erroP escondido">Deve ser um número entre 0 e 100</p>
+          <input type="text" placeholder="URL da imagem do nível" class="urlNivel${i}">
+          <p class="validacao${i}URLNivel erroP escondido">O valor informado não é uma URL válida</p>
+          <input type="text" placeholder="Descrição do nível" class="descNivel${i}">
+          <p class="validacao${i}DescNivel erroP escondido">Texto deve conter no mínimo 30 letras</p>
+
+        </div>
+        </div>
+        `;
+    }
+}
+
+function alternarNiveis (elemento) {
+    let checar = elemento.parentNode;
+    let temEscondido = document.querySelector(".alternarNiveis .tituloNivel.escondido");
+    let teste = document.querySelectorAll(".alternarNiveis .inputNiveis");
+    for(let i = 0; i < teste.length; i++){
+        teste[i].classList.add("escondido");
+    }
+    if(temEscondido !== null){
+        temEscondido.classList.remove("escondido");
+    }
+    checar.querySelector(".tituloNivel").classList.add("escondido");
+    checar.querySelector(".inputNiveis").classList.remove("escondido");
+}
+
+function verificarInput3c () {
+    teste = true;
+    teste1 = true;
+    teste2 = true;
+    teste3 = true;
+    let arr = [];
+    let cont = 0;
+
+    for(let i = 1; i <= verificaNiveis; i++){
+
+        let verificaTexto = document.querySelector(`.titulo${i}-nivel`).value;
+        if (verificaTexto.length < 10){
+           document.querySelector(`.validacao${i}Titulo`).classList.remove("escondido");
+           document.querySelector(`.titulo${i}-nivel`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}Titulo`).classList.add("escondido");
+            document.querySelector(`.titulo${i}-nivel`).classList.remove("inputErro");
+            teste = true;
+        } 
+
+        let verificaMinimo = document.querySelector(`.minimo${i}-pergunta`).value;
+        if (verificaMinimo.length < 1 || Number(verificaMinimo) < 0 || Number(verificaMinimo) > 100 || isNaN(verificaMinimo)){
+           document.querySelector(`.validacao${i}minimo`).classList.remove("escondido");
+           document.querySelector(`.minimo${i}-pergunta`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}minimo`).classList.add("escondido");
+            document.querySelector(`.minimo${i}-pergunta`).classList.remove("inputErro");
+            teste1 = true;
+            arr[cont].push(Number(verificaMinimo));
+        }
+
+        let verificaURLNivel1 = document.querySelector(`.urlNivel${i}`).value;
+        let urlNivel1OK = validarURL(verificaURLNivel1);
+        if (urlNivel1OK === false){
+           document.querySelector(`.validacao${i}URLNivel`).classList.remove("escondido");
+           document.querySelector(`.urlNivel${i}`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}URLNivel`).classList.add("escondido");
+            document.querySelector(`.urlNivel${i}`).classList.remove("inputErro");
+            teste2 = true;
+        }
+
+        let verificaTextoDesc = document.querySelector(`.descNivel${i}`).value;
+        if (verificaTextoDesc.length < 30){
+           document.querySelector(`.validacao${i}DescNivel`).classList.remove("escondido");
+           document.querySelector(`.descNivel${i}`).classList.add("inputErro");
+        }else {
+            document.querySelector(`.validacao${i}DescNivel`).classList.add("escondido");
+            document.querySelector(`.descNivel${i}`).classList.remove("inputErro");
+            teste3 = true;
+        } 
+
+        if(teste === true && teste1 === true && teste2 === true && teste3 === true){
+            levels[cont] = {
+                title: verificaTexto,
+                image: verificaURLNivel1,
+                text: verificaTextoDesc,
+                minValue: verificaMinimo
+            }
+        }
+
+        cont++;
+    }
+
+    let verificaZero = arr.map(elemento => elemento === 0).filter(elemento => elemento === true);
+    if(verificaZero.length !== 0){
+        arrQuizz.levels = levels;
+        //chamar função que finaliza essa tela
+    }else {
+        alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%")
+    }
+}
+
