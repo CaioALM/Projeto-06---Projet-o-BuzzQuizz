@@ -127,15 +127,15 @@
 
       <!-- TELA3-2 -->
 
-      <div class="tela3-2 ">
+      <div class="tela3-2 escondido">
 
         <div class="container-tela3-2">
 
           <p>Crie suas perguntas</p>
 
           <div class="rederizarPerguntas">
-
-            <div class="tituloPergunta escondido">
+            <div class="alternar">
+            <div class="tituloPergunta escondido" onclick="alternarPerguntas(this)">
               <p>Pergunta 1</p>
               <ion-icon name="create-outline"></ion-icon>
             </div>
@@ -173,7 +173,7 @@
               <input type="text" placeholder="URL da imagem 3" class="urlResp1Erro3">
               <p class="validacao1URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
             </div>
-
+          </div>
 
 
           </div>
@@ -185,6 +185,43 @@
 
       <!-- TELA3-2 -->
 
+      <!-- TELA3-3 -->
+
+      <div class="tela3-3 ">
+
+        <div class="container-tela3-3">
+
+          <p>Agora, decida os níveis</p>
+
+          <div class="rederizarNiveis">
+            <div class="alternarNiveis">
+            <div class="tituloNivel escondido" onclick="alternarNiveis(this)">
+              <p>Nível 1</p>
+              <ion-icon name="create-outline"></ion-icon>
+            </div>
+            <div class="inputNiveis ">
+
+              <p class="dentroPergunta">Nível 1</p>
+              <input type="text" placeholder="Título do nível" class="titulo1-nivel">
+              <p class="validacao1Titulo erroP escondido">Texto deve conter no mínimo 10 letras</p>
+              <input type="text" placeholder="% de acerto mínima" class="minimo1-pergunta">
+              <p class="validacao1minimo erroP escondido">Deve ser um número entre 0 e 100</p>
+              <input type="text" placeholder="URL da imagem do nível" class="urlNivel1">
+              <p class="validacao1URLNivel erroP escondido">O valor informado não é uma URL válida</p>
+              <input type="text" placeholder="Descrição do nível" class="descNivel1">
+              <p class="validacao1DescNivel erroP escondido">Texto deve conter no mínimo 30 letras</p>
+
+
+            </div>
+            </div>
+          </div>
+
+          <div class="botao-tela3-2" onclick="verificarInput3c()">Finalizar Quizz</div>
+        </div>
+
+      </div>
+
+      <!-- TELA3-3 -->
 
     </main>
 
