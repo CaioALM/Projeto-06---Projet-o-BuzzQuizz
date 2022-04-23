@@ -1,4 +1,12 @@
+// TELA1
 
+function criarQuizz() {
+    let elemento = document.querySelector(".tela1")
+    elemento.classList.add("escondido")
+    let element = document.querySelector(".tela3")
+    element.classList.remove("escondido")
+
+}
 //TELA2
 
 let finalizarQuiz = 0;
