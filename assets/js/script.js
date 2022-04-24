@@ -1,3 +1,5 @@
+let linkTodosQuizzes = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes" // Para pega 1 só colocar o ID
+
 // TELA1
 
 function criarQuizz() {
@@ -7,6 +9,52 @@ function criarQuizz() {
     element.classList.remove("escondido")
 
 }
+const idUsuario = null;
+const meuQuizz = [];
+
+function salvarId(id){
+    idUsuario = {"id-usuário": id};
+}
+
+function pegarMeuQuizz(){
+    const requisicao = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',{ headers: idUsuario});
+    requisicao.then(processarSucessoQuizz).catch(processarErroQuizz);
+}
+
+
+//Função para renderizar quizzes
+function pegarQuizzes(){
+    const promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
+    promisse.then(renderizarQuizzes)
+}
+
+    function renderizarQuizzes(elemento) {
+        console.log(elemento)
+        let quizzesArray = []
+        quizzesArray = elemento.data
+        console.log(elemento.data)
+        let containerQuizzes = document.querySelector('#quizzesOnline');
+        containerQuizzes.innerHTML = " "
+        for (let i = 0 ; i<quizzesArray.length ; i ++){
+            containerQuizzes.innerHTML += `
+            <div class="quizzes">
+             <img src="${quizzesArray[i].image}" alt="" onclick="jogarQuizz()" >
+           <div class="textoImagem" onclick="jogarQuizz()">${quizzesArray[i].title}</div>
+            </div>
+             `;
+        }
+}
+pegarQuizzes()
+
+
+function jogarQuizz(){
+    let elemento = document.querySelector(".tela1")
+    elemento.classList.add("escondido")
+    let element = document.querySelector(".tela2")
+    element.classList.remove("escondido")
+}
+
+
 //TELA2
 
 let finalizarQuiz = 0;
