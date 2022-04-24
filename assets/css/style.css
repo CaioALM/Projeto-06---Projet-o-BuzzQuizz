@@ -406,7 +406,7 @@ color: #FFFFFF;
   background-color: #FFE9E9;
 }
 
-.botao-tela3-1, .botao-tela3-2 {
+.botao-tela3-1, .botao-tela3-2, .botao-tela3-3 {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -504,15 +504,15 @@ color: #FFFFFF;
     height: 255px;
   }
 
-  .container-tela3-1 {
+  .container-tela3-1, .container-tela3-2, .container-tela3-3, .rederizarPerguntas, .inputPerguntas, .rederizarPerguntas, .rederizarNiveis, .container-tela3-3 {
     width: 100%;
   }
 
-  .container-tela3-1 > p {
+  .container-tela3-1 > p, .container-tela3-2 > p, .container-tela3-3 > p {
     font-size: 20px;
   }
 
-  .botao-tela3-1 {
+  .botao-tela3-1, .botao-tela3-2, .botao-tela3-3 {
     width: 324px;
   }
 }
