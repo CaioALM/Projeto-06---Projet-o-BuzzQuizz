@@ -162,7 +162,7 @@ function mostrarResultado (){
 //TELA 3
 let arrQuizz = {};
 let verificaPergunta;
-let verificaNiveis = 2;
+let verificaNiveis;
 let questions = [];
 let answers = [];
 let levels = [];
@@ -297,6 +297,7 @@ function verificarInput3b () {
     let teste7;
     let teste8;
     let teste9;
+    let confirmacao;
     let cont = 0;
 
     for(let i = 1; i <= verificaPergunta; i++){
@@ -437,11 +438,18 @@ function verificarInput3b () {
                 answers: answers[0]
             }
         ]
-        renderizaNiveis ()
+        confirmacao = true;
     }
     cont++;
     }
-    arrQuizz.questions = questions;
+    if(confirmacao === true){
+        arrQuizz.questions = questions;
+        document.querySelector(".tela3-2").classList.add("escondido");
+        document.querySelector(".tela3-3").classList.remove("escondido");
+        renderizaNiveis ()
+        console.log(arrQuizz)
+    }
+    
 
 }
 
@@ -460,7 +468,7 @@ function alternarPerguntas (elemento) {
     checar.querySelector(".inputPerguntas").classList.remove("escondido");
 
 }
-renderizaNiveis()
+
 function renderizaNiveis () {
     for(let i = 2; i <= verificaNiveis; i++){
         let renderizaNiveis = document.querySelector(".rederizarNiveis");
@@ -530,7 +538,7 @@ function verificarInput3c () {
             document.querySelector(`.validacao${i}minimo`).classList.add("escondido");
             document.querySelector(`.minimo${i}-pergunta`).classList.remove("inputErro");
             teste1 = true;
-            arr[cont].push(Number(verificaMinimo));
+            arr[cont] = (Number(verificaMinimo));
         }
 
         let verificaURLNivel1 = document.querySelector(`.urlNivel${i}`).value;
@@ -569,7 +577,11 @@ function verificarInput3c () {
     let verificaZero = arr.map(elemento => elemento === 0).filter(elemento => elemento === true);
     if(verificaZero.length !== 0){
         arrQuizz.levels = levels;
+        document.querySelector(".tela3-3").classList.add("escondido");
+        
+        //remover escondido da tela de finalizar
         //chamar função que finaliza essa tela
+        console.log(arrQuizz)
     }else {
         alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%")
     }
