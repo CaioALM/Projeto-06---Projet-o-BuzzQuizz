@@ -72,16 +72,13 @@ h3 {
   background-color: #fafafa;
 }
 .meusQuizzes-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  
+
   width: 1051px;
-  height: 181px;
+  height: auto;
   margin-top: 77px;
   
-  border-radius: 15px;
+  background-color:#FAFAFA;
+  
   
 }
   
@@ -115,20 +112,21 @@ h2 {
   font-weight: 700;
   font-size: 20px;
   line-height: 23px;
-  margin-left: 10px;
   display: flex;
   align-items: center;
   text-align: center;
   color: #000000;
+  font-weight: 900;
+  font-size: 22px;
 }
   
 .todosQuizzes-container {
   width: 1051px;
-  height: 600px;
-  margin-top: 146px;
+  height: auto;
+  margin-top: 77px;
   
   background-color:#FAFAFA;
-  ;
+  
 }
 
 .quizzesFundo {
@@ -147,13 +145,15 @@ h2 {
   width: 340px;
   height: 181px;
 
+
 }
 .quizzes img{
   position: absolute;
   height: 181px;
   width: 340px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(image.png);
-border-radius: 5px;
+  background-color: transparent;
+  background-image: linear-gradient(to top, black, transparent) ; 
+  border-radius: 5px;
 }
 .textoImagem {
   position: relative;
@@ -168,8 +168,30 @@ display: flex;
 align-items: center;
 
 color: #FFFFFF;
+
 }
 
+.criar-quizz {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #000000;
+  font-weight: 900;
+  font-size: 22px;
+
+}
+
+.criar-quizz ion-icon{
+  margin-left: 10px;
+  font-size: 35px;
+  color:#EC362D
+ 
+}
 
 
   /* O que você tinha feito até aqui */
