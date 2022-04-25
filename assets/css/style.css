@@ -7,6 +7,11 @@ body {
   box-sizing: border-box;
 }
 
+
+p, .textoImagem {
+  word-break: break-all;
+}
+
 .top-bar {
   display: flex;
   justify-content: center;
@@ -592,6 +597,7 @@ color: #FFFFFF;
 
   .resposta-quiz p {
     margin: 15px 0 0 0;
+    word-wrap: break-word;
   }
 
   .resposta-quiz img {

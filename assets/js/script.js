@@ -41,8 +41,9 @@ function pegarQuizzes(){
              <img src="${quizzesArray[i].image}" alt="">
             <div class="gradiente"></div>
             <div class="textoImagem" >${quizzesArray[i].title}</div>
-            </div>
             <div class="id-quiz">${quizzesArray[i].id}</div>
+            </div>
+            
              `;
         }
 }
@@ -50,9 +51,13 @@ pegarQuizzes()
 
 
 function jogarQuizz(elemento){
+    console.log(elemento)
+    let idqqqqq = elemento.querySelector(".id-quiz").innerHTML
+    console.log(idqqqqq)
     document.querySelector(".tela1").classList.add("escondido")
     document.querySelector(".tela2").classList.remove("escondido")
-    
+    document.querySelector(".quiz-top-bar").classList.remove("escondido")
+    buscarQuizzId(idqqqqq)
 }
 
 function acessarQuizz() {
@@ -128,8 +133,8 @@ function voltarHome () {
 
 //buscar quiz
 
-function buscarQuizzId () {
-    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
+function buscarQuizzId (elemento) {
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${elemento}`);
     promise.then(renderizarQuizz);
 }
 
@@ -147,6 +152,8 @@ function renderizarQuizz (elemento) {
 function renderizarQuizzCorpo (elemento) {
     let corpoQuizz = document.querySelector(".container-quiz");
     verificarRespostas = elemento.data.questions.length;
+    console.log(verificarRespostas)
+    corpoQuizz.innerHTML = "";
     for(let i = 0; i < verificarRespostas; i++){
         corpoQuizz.innerHTML += `
             <div class="espacamento">
@@ -161,6 +168,7 @@ function renderizarQuizzCorpo (elemento) {
         `;
     }
     renderizarQuizzPerguntas(elemento);
+    
 }
 
 function embaralhar() { 
