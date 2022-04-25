@@ -37,22 +37,22 @@ function pegarQuizzes(){
         containerQuizzes.innerHTML = " "
         for (let i = 0 ; i<quizzesArray.length ; i ++){
             containerQuizzes.innerHTML += `
-            <div class="quizzes">
-             <img src="${quizzesArray[i].image}" alt="" onclick="jogarQuizz()" >
+            <div class="quizzes" onclick="jogarQuizz(this)">
+             <img src="${quizzesArray[i].image}" alt="">
             <div class="gradiente"></div>
-            <div class="textoImagem" onclick="jogarQuizz()">${quizzesArray[i].title}</div>
+            <div class="textoImagem" >${quizzesArray[i].title}</div>
             </div>
+            <div class="id-quiz">${quizzesArray[i].id}</div>
              `;
         }
 }
 pegarQuizzes()
 
 
-function jogarQuizz(){
-    let elemento = document.querySelector(".tela1")
-    elemento.classList.add("escondido")
-    let element = document.querySelector(".tela2")
-    element.classList.remove("escondido")
+function jogarQuizz(elemento){
+    document.querySelector(".tela1").classList.add("escondido")
+    document.querySelector(".tela2").classList.remove("escondido")
+    
 }
 
 function acessarQuizz() {
@@ -129,7 +129,7 @@ function voltarHome () {
 //buscar quiz
 
 function buscarQuizzId () {
-    const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/1");
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${id}`);
     promise.then(renderizarQuizz);
 }
 
@@ -648,13 +648,23 @@ function verificarInput3c () {
     let verificaZero = arr.map(elemento => elemento === 0).filter(elemento => elemento === true);
     if(verificaZero.length !== 0){
         arrQuizz.levels = levels;
-        document.querySelector(".tela3-3").classList.add("escondido");
-        
+        postarQuizz()
+        function postarQuizz() {
+            let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", arrQuizz)
+            promisse.then(teste)
+
+        }
+      //  document.querySelector(".tela3-3").classList.add("escondido");
+
         //remover escondido da tela de finalizar
         //chamar função que finaliza essa tela
         console.log(arrQuizz)
     }else {
         alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%")
     }
+}
+function teste() {
+    document.querySelector(".tela3-3").classList.add("escondido");
+    document.querySelector(".tela3-4").classList.remove("escondido");
 }
 

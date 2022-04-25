@@ -557,7 +557,7 @@ color: #FFFFFF;
 
 /* TELA 3 */
 
-.escondido, .verificacao {
+.escondido, .verificacao, .id-quiz {
   display: none;
 }
 
