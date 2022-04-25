@@ -201,7 +201,94 @@ color: #FFFFFF;
  
 }
 
+.container-tela3-4 {
+  
+  width: 100vw;
+  height: 100vh;
+  margin-top: 77px;
+  
+  background-color:#FAFAFA;
+  
+  display: flex;
+  align-items: center;
+ 
+  flex-direction: column;
 
+}
+
+.botao-tela{
+  margin-top: 30px;
+  width: 220.32px;
+  height: 44px;
+
+  
+  background: #EC362D;
+  border-radius: 15px;
+  
+}
+
+h4 {
+  margin-top: 71px;
+  margin-bottom: 46px;
+width: 230px;
+height: 27px;
+
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 23px;
+line-height: 27px;
+
+display: flex;
+align-items: center;
+
+color: #000000;
+
+}
+
+.quizzes-finalizacao {
+  width: 500px;
+  height: 266px;
+  margin-bottom: 60px;
+  
+}
+.quizzes-finalizacao img{
+  position: absolute;
+
+  width: 500px;
+  height: 266px;
+
+  background-color: transparent;
+  background-image: linear-gradient(to top, black, transparent) ; 
+  border-radius: 5px;
+}
+
+.gradiente-finalizacao {
+  position: absolute;
+  width: 500px;
+  height: 266px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.1%, #000000 100%), url(image.png);
+  border-radius: 5px;
+}
+
+.textoImagem-finalizacao{
+margin-top: 190px;
+margin-left: 15px;
+position: relative;
+width: 100%;
+height: 54px;
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 23px;
+line-height: 27px;
+display: flex;
+align-items: center;
+
+color: #FFFFFF;
+}
   /* O que você tinha feito até aqui */
 
 
@@ -414,7 +501,7 @@ color: #FFFFFF;
   background-color: #FFE9E9;
 }
 
-.botao-tela3-1, .botao-tela3-2, .botao-tela3-3 {
+.botao-tela3-1, .botao-tela3-2, .botao-tela3-3, .botao-tela3-4{
   display: flex;
   justify-content: center;
   align-items: center;

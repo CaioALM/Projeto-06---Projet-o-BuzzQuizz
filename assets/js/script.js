@@ -30,10 +30,9 @@ function pegarQuizzes(){
 }
 
     function renderizarQuizzes(elemento) {
-        console.log(elemento)
         let quizzesArray = []
         quizzesArray = elemento.data
-        console.log(elemento.data)
+
         let containerQuizzes = document.querySelector('#quizzesOnline');
         containerQuizzes.innerHTML = " "
         for (let i = 0 ; i<quizzesArray.length ; i ++){
@@ -53,6 +52,20 @@ function jogarQuizz(){
     let elemento = document.querySelector(".tela1")
     elemento.classList.add("escondido")
     let element = document.querySelector(".tela2")
+    element.classList.remove("escondido")
+}
+
+function acessarQuizz() {
+    let elemento = document.querySelector(".tela3-4")
+    elemento.classList.add("escondido")
+    let element = document.querySelector(".tela2")
+    element.classList.remove("escondido")
+}
+
+function voltarHomeTela3() {
+    let elemento = document.querySelector(".tela3-4")
+    elemento.classList.add("escondido")
+    let element = document.querySelector(".tela1")
     element.classList.remove("escondido")
 }
 
