@@ -12,10 +12,10 @@ function criarQuizz() {
 const idUsuario = null;
 const meuQuizz = [];
 
-function salvarId(id){
-    idUsuario = {"id-usuário": id};
-localStorage.setItem("MeusQuizzes", id)
-}
+// function salvarId(id){
+//     idUsuario = {"id-usuário": id};
+// localStorage.setItem("MeusQuizzes", id)
+// }
 
 function pegarMeuQuizz(){
     const requisicao = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',{ headers: idUsuario});
@@ -502,13 +502,13 @@ function verificarInput3b () {
     }
 
     if(teste === true && teste1 === true){
-        questions[cont] = [
+        questions[cont] =  
             {
                 title: verificaTexto,
                 color: verificaCor,
                 answers: answers[0]
             }
-        ]
+        ;
         confirmacao = true;
     }
     cont++;
@@ -582,10 +582,10 @@ function alternarNiveis (elemento) {
 }
 
 function verificarInput3c () {
-    teste = true;
-    teste1 = true;
-    teste2 = true;
-    teste3 = true;
+    let teste = true;
+    let teste1 = true;
+    let teste2 = true;
+    let teste3 = true;
     let arr = [];
     let cont = 0;
 
@@ -640,7 +640,7 @@ function verificarInput3c () {
                 text: verificaTextoDesc,
                 minValue: verificaMinimo
             }
-        }
+        };
 
         cont++;
     }
@@ -649,22 +649,31 @@ function verificarInput3c () {
     if(verificaZero.length !== 0){
         arrQuizz.levels = levels;
         postarQuizz()
-        function postarQuizz() {
-            let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", arrQuizz)
-            promisse.then(teste)
 
-        }
-      //  document.querySelector(".tela3-3").classList.add("escondido");
-
-        //remover escondido da tela de finalizar
-        //chamar função que finaliza essa tela
         console.log(arrQuizz)
     }else {
         alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%")
     }
 }
-function teste() {
+
+function postarQuizz() {
+    let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", arrQuizz)
+    promisse.then(testePost);
+
+}
+
+
+function testePost(elemento) {
+    console.log(elemento)
     document.querySelector(".tela3-3").classList.add("escondido");
     document.querySelector(".tela3-4").classList.remove("escondido");
+    //elemento.data.id.push(meuQuizz);
+
+    //console.log(elemento.data.id)
+    let teste = elemento.data
+    
+    meuQuizz.push(teste.id);
+    
+    console.log(meuQuizz);
 }
 
