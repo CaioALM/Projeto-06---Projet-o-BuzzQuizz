@@ -14,6 +14,7 @@ const meuQuizz = [];
 
 function salvarId(id){
     idUsuario = {"id-usuário": id};
+localStorage.setItem("MeusQuizzes", id)
 }
 
 function pegarMeuQuizz(){
@@ -39,7 +40,8 @@ function pegarQuizzes(){
             containerQuizzes.innerHTML += `
             <div class="quizzes">
              <img src="${quizzesArray[i].image}" alt="" onclick="jogarQuizz()" >
-           <div class="textoImagem" onclick="jogarQuizz()">${quizzesArray[i].title}</div>
+            <div class="gradiente"></div>
+            <div class="textoImagem" onclick="jogarQuizz()">${quizzesArray[i].title}</div>
             </div>
              `;
         }
