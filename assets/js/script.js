@@ -15,10 +15,9 @@ const idUsuario = null;
 const meuQuizz = [];
 
 function criarQuizz() {
-    let elemento = document.querySelector(".tela1")
-    elemento.classList.add("escondido")
-    let element = document.querySelector(".tela3")
-    element.classList.remove("escondido")
+document.querySelector(".tela1").classList.add("escondido");
+document.querySelector(".tela3").classList.remove("escondido");
+
 
 }
 
@@ -231,6 +230,8 @@ function verificarInput3a() {
     let teste1;
     let teste2;
     let teste3;
+    verificaNiveis = "" ;
+    verificaPergunta = "" ; 
 
     let verificaTitulo = document.querySelector(".titulo-quiz").value;
     if (verificaTitulo.length < 20 || verificaTitulo.length > 65){
@@ -242,6 +243,7 @@ function verificarInput3a() {
         teste = true;
         arrQuizz.title = verificaTitulo;
     }  
+    verificaTitulo = "" ;
 
     let verificaURL = document.querySelector(".url-quiz").value;
     let urlOK = validarURL(verificaURL);
@@ -254,6 +256,7 @@ function verificarInput3a() {
         teste1 = true;
         arrQuizz.image = verificaURL;
     }
+    verificaURL = "" ;
 
     verificaPergunta = document.querySelector(".quantidadePerguntas").value;
     if (Number(verificaPergunta) < 3 || isNaN(verificaPergunta)){
@@ -282,6 +285,7 @@ function verificarInput3a() {
     }else {
         alert("Preencha os dados corretamente");
     }
+    
 }
 
 function validarURL (elemento){
