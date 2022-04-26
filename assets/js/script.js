@@ -57,6 +57,11 @@ function jogarQuizz(elemento){
     document.querySelector(".tela1").classList.add("escondido")
     document.querySelector(".tela2").classList.remove("escondido")
     document.querySelector(".quiz-top-bar").classList.remove("escondido")
+    document.querySelector(".resultado-quiz").innerHTML = "";
+    finalizarQuiz = "";
+    document.querySelector(".botao-home").classList.remove("escondido");
+    const scrollTop = document.querySelector(".quiz-top-bar");    
+    scrollTop.scrollIntoView();
     buscarQuizzId(idqqqqq)
 }
 
@@ -119,6 +124,8 @@ function scrollar () {
 
 function resetarPaginaAtual (){
     document.querySelector(".container-quiz").innerHTML = "";
+    document.querySelector(".resultado-quiz").innerHTML = "";     
+    finalizarQuiz = "";
     buscarQuizzId(idqqqqq);
     const elemento = document.querySelector(".sobreporImagem");
     elemento.scrollIntoView();
@@ -183,7 +190,7 @@ function renderizarQuizzPerguntas (elemento) {
     while(cont < perguntasQuiz.length){
         const arrPerguntas = elemento.data.questions[cont].answers;
         arrPerguntas.sort(embaralhar);
-        for(let i = 0; i < elemento.data.questions[i].answers.length; i++) {
+        for(let i = 0; i < elemento.data.questions[cont].answers.length; i++) {
             perguntasQuiz[cont].innerHTML += `
                 <div class="ajusteQuiz" onclick="selecionarQuiz(this)">
                     <img src="${arrPerguntas[i].image}" alt="">
@@ -692,35 +699,39 @@ let arraySalvo = [];
     let arraySalvoString = JSON.stringify(id);
     localStorage.setItem("MeusQuizzes", arraySalvoString);
 }
-
+pegarId();
 function pegarId(){
 let arraySalvoString = localStorage.getItem("MeusQuizzes");
-arraySalvo = JSON.parse(arraySalvoString)
+arraySalvo = JSON.parse(arraySalvoString);
+testarQuizUsuario();
+console.log(arraySalvo)
 }
 
 function testarQuizUsuario() {
 
     if (arraySalvo.length === 0){
-        document.querySelector("meusQuizzes-container").classList.add("escondido");
-        document.querySelector("meusQuizzes-container-vazio").classList.remove("escondido");
+        document.querySelector(".meusQuizzes-container").classList.add("escondido");
+        document.querySelector(".meusQuizzes-container-vazio").classList.remove("escondido");
     } else {
-        document.querySelector("meusQuizzes-container-vazio").classList.add("escondido");
-        document.querySelector("meusQuizzes-container").classList.remove("escondido");
+        document.querySelector(".meusQuizzes-container-vazio").classList.add("escondido");
+        document.querySelector(".meusQuizzes-container").classList.remove("escondido");
         pegarMeusQuizzes();
 
     }
-
+    console.log("entrei TESTAR QUIZ USUARIO")
 }
 function pegarMeusQuizzes(){
-    for (let i = 0 ; i<arraySalvo.legnth ; i ++){
+    console.log("ENTREI PEGAR QUIZZES")
+    for (let i = 0 ; i<arraySalvo.length ; i ++){
         const promisse = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${arraySalvo[i]}`)
         promisse.then(renderizarMeusQuizzes) 
         function renderizarMeusQuizzes(elemento) {
             let quizzesArray = []
             let containerQuizzes = document.querySelector('.quizzesFundo');
             containerQuizzes.innerHTML = " "
+            quizzesArray[i] = elemento.data
             for(let i = 0 ; i<arraySalvo.length ; i++){
-                quizzesArray = elemento.data.id[arraySalvo]
+               
                     containerQuizzes.innerHTML += `
                     <div class="quizzes" onclick="jogarQuizz(this)">
                      <img src="${quizzesArray[i].image}" alt="">
