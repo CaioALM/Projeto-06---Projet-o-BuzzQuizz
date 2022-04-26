@@ -75,8 +75,7 @@ function acessarQuizz() {
 function voltarHomeTela3() {
     document.querySelector(".tela3-4").classList.add("escondido");
     document.querySelector(".tela1").classList.remove("escondido");
-    pegarId();
-    pegarQuizzes();
+    window.location.reload();
 }
 
 function selecionarQuiz (elemento) {
