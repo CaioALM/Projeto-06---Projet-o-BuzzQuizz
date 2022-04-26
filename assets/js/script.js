@@ -13,7 +13,6 @@ let receberObjeto;
 let idqqqqq;
 const idUsuario = null;
 const meuQuizz = [];
-let ehTrue;
 
 function criarQuizz() {
     document.querySelector(".tela1").classList.add("escondido");
@@ -25,34 +24,20 @@ function pegarQuizzes(){
     promisse.then(renderizarQuizzes);
 }
 
-function renderizarQuizzes(elemento) {     
-    let quizzesArray = []     
-    quizzesArray = elemento.data;     
-    let containerQuizzes = document.querySelector('#quizzesOnline');     
-    containerQuizzes.innerHTML = " "     
-    for (let i = 0 ; i < quizzesArray.length ; i ++){         
-        containerQuizzes.innerHTML += `         
-        <div class="quizzes" onclick="jogarQuizz(this)">         
-            <img src="${quizzesArray[i].image}" alt="">         
-            <div class="gradiente"></div>         
-            <div class="textoImagem" >${quizzesArray[i].title}</div>         
-            <div class="id-quiz-todos">${quizzesArray[i].id}</div>         
-        </div>         
-        `;     
-    } 
-    procurarMeusQuiz();
-}
-
-function procurarMeusQuiz () {
-    let meusIds = localStorage.getItem("MeusQuizzes");
-    meusIds = JSON.parse(meusIds);
-    let todosIds = document.querySelectorAll(".id-quiz-todos");
-    for (let i = 0; i < todosIds.length; i++){
-        for (let j = 0; j < meusIds.length; j++){
-            if(Number(todosIds[i].innerHTML) === meusIds[j]){
-                todosIds[i].parentNode.classList.add("escondido");
-            }
-        }
+function renderizarQuizzes(elemento) {
+    let quizzesArray = []
+    quizzesArray = elemento.data;
+    let containerQuizzes = document.querySelector('#quizzesOnline');
+    containerQuizzes.innerHTML = " "
+    for (let i = 0 ; i<quizzesArray.length ; i ++){
+        containerQuizzes.innerHTML += `
+        <div class="quizzes" onclick="jogarQuizz(this)">
+        <img src="${quizzesArray[i].image}" alt="">
+        <div class="gradiente"></div>
+        <div class="textoImagem" >${quizzesArray[i].title}</div>
+        <div class="id-quiz">${quizzesArray[i].id}</div>
+        </div>
+        `;
     }
 }
 
@@ -321,29 +306,23 @@ function renderizarPerguntas () {
             <input type="text" placeholder="Cor de fundo da pergunta" class="cor${i}-pergunta">
             <p class="validacao${i}Cor erroP escondido">Cor deve ser no formato hexadecimal Ex: #EC362D</p>
             <div class="inputUrlEspac"></div>
-
             <p class="dentroPergunta">Resposta correta</p>
             <input type="text" placeholder="Resposta correta" class="reposta${i}-certa">
             <p class="validacao${i}Certo erroP escondido">Texto não pode estar vazio</p>
             <input type="text" placeholder="URL da imagem" class="urlResp${i}Certa">
             <p class="validacao${i}URLCerto erroP escondido">O valor informado não é uma URL válida</p>
             <div class="inputUrlEspac"></div>
-
             <p class="dentroPergunta">Resposta incorreta</p>
             <input type="text" placeholder="Resposta incorreta 1" class="resposta${i}-erro1">
             <p class="validacao${i}Erro1 erroP escondido">Deve conter pelo menos 1 resposta incorreta</p>
             <input type="text" placeholder="URL da imagem 1" class="urlResp${i}Erro1">
             <p class="validacao${i}URLErro1 erroP escondido">O valor informado não é uma URL válida</p>
             <div class="inputUrlEspac"></div>
-
             <input type="text" placeholder="Resposta incorreta 2" class="resposta${i}-erro2">
-
             <input type="text" placeholder="URL da imagem 2" class="urlResp${i}Erro2">
             <p class="validacao${i}URLErro2 erroP escondido">O valor informado não é uma URL válida</p>
             <div class="inputUrlEspac"></div>
-
             <input type="text" placeholder="Resposta incorreta 3" class="resposta${i}-erro3">
-
             <input type="text" placeholder="URL da imagem 3" class="urlResp${i}Erro3">
             <p class="validacao${i}URLErro3 erroP escondido">O valor informado não é uma URL válida</p>
         </div>
@@ -540,7 +519,6 @@ function renderizaNiveis () {
           <ion-icon name="create-outline"></ion-icon>
         </div>
         <div class="inputNiveis escondido">
-
           <p class="dentroPergunta">Nível ${i}</p>
           <input type="text" placeholder="Título do nível" class="titulo${i}-nivel">
           <p class="validacao${i}Titulo erroP escondido">Texto deve conter no mínimo 10 letras</p>
@@ -550,7 +528,6 @@ function renderizaNiveis () {
           <p class="validacao${i}URLNivel erroP escondido">O valor informado não é uma URL válida</p>
           <input type="text" placeholder="Descrição do nível" class="descNivel${i}">
           <p class="validacao${i}DescNivel erroP escondido">Texto deve conter no mínimo 30 letras</p>
-
         </div>
         </div>
         `;
@@ -721,4 +698,3 @@ function renderizarMeusQuizzes(elemento) {
 }
 
 pegarId()
-
