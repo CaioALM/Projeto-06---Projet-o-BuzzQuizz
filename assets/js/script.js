@@ -27,23 +27,22 @@ function pegarQuizzes(){
     promisse.then(renderizarQuizzes)
 }
 
-    function renderizarQuizzes(elemento) {
-        let quizzesArray = []
-        quizzesArray = elemento.data;
+function renderizarQuizzes(elemento) {
+    let quizzesArray = []
+    quizzesArray = elemento.data;
 
-        let containerQuizzes = document.querySelector('#quizzesOnline');
-        containerQuizzes.innerHTML = " "
-        for (let i = 0 ; i<quizzesArray.length ; i ++){
-            containerQuizzes.innerHTML += `
-            <div class="quizzes" onclick="jogarQuizz(this)">
-             <img src="${quizzesArray[i].image}" alt="">
-            <div class="gradiente"></div>
-            <div class="textoImagem" >${quizzesArray[i].title}</div>
-            <div class="id-quiz">${quizzesArray[i].id}</div>
-            </div>
-            
-             `;
-        }
+    let containerQuizzes = document.querySelector('#quizzesOnline');
+    containerQuizzes.innerHTML = " "
+    for (let i = 0 ; i<quizzesArray.length ; i ++){
+        containerQuizzes.innerHTML += `
+        <div class="quizzes" onclick="jogarQuizz(this)">
+        <img src="${quizzesArray[i].image}" alt="">
+        <div class="gradiente"></div>
+        <div class="textoImagem" >${quizzesArray[i].title}</div>
+        <div class="id-quiz">${quizzesArray[i].id}</div>
+        </div>
+        `;
+    }
 }
 
 pegarQuizzes();
@@ -62,17 +61,22 @@ function jogarQuizz(elemento){
 }
 
 function acessarQuizz() {
-    let elemento = document.querySelector(".tela3-4")
-    elemento.classList.add("escondido")
-    let element = document.querySelector(".tela2")
-    element.classList.remove("escondido")
+    let acessa = document.querySelector(".quizzes-finalizacao .id-quiz").innerHTML;
+    console.log(acessa)
+    let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${acessa}`);
+    promise.then(renderizarQuizz);
+    idqqqqq = acessa;
+    document.querySelector(".tela3-4").classList.add("escondido");
+    document.querySelector(".tela2").classList.remove("escondido");
+    document.querySelector(".quiz-top-bar").classList.remove("escondido");
+
 }
 
 function voltarHomeTela3() {
-    let elemento = document.querySelector(".tela3-4")
-    elemento.classList.add("escondido")
-    let element = document.querySelector(".tela1")
-    element.classList.remove("escondido")
+    let elemento = document.querySelector(".tela3-4");
+    elemento.classList.add("escondido");
+    let element = document.querySelector(".tela1");
+    element.classList.remove("escondido");
 }
 
 function selecionarQuiz (elemento) {
@@ -110,6 +114,7 @@ function scrollar () {
 function resetarPaginaAtual (){
     document.querySelector(".container-quiz").innerHTML = "";
     document.querySelector(".resultado-quiz").innerHTML = "";
+    document.querySelector(".botao-home").classList.remove("escondido")
     finalizarQuiz = "";
     buscarQuizzId(idqqqqq);
     const elemento = document.querySelector(".sobreporImagem");
@@ -634,12 +639,20 @@ function postarQuizz() {
 }
 
 function testePost(elemento) {
-    console.log(elemento)
+    let finalizarPost = document.querySelector(".quizzes-finalizacao");
+    finalizarPost.innerHTML = "";
+    finalizarPost.innerHTML = `
+    <img src="${elemento.data.image}" alt="">
+    <div class="gradiente-finalizacao"></div>
+    <div class="textoImagem-finalizacao">${elemento.data.title}</div>
+    <div class="id-quiz">${elemento.data.id}</div>
+    `;
+
     document.querySelector(".tela3-3").classList.add("escondido");
     document.querySelector(".tela3-4").classList.remove("escondido");
     let teste = elemento.data;
-    meuQuizz.push(teste.id);
-    salvarId(meuQuizz);
+    //meuQuizz.push(teste.id);
+    salvarId(teste.id);
 }
 
 function salvarId(id) {
