@@ -15,21 +15,18 @@ const idUsuario = null;
 const meuQuizz = [];
 
 function criarQuizz() {
-document.querySelector(".tela1").classList.add("escondido");
-document.querySelector(".tela3").classList.remove("escondido");
-
-
+    document.querySelector(".tela1").classList.add("escondido");
+    document.querySelector(".tela3").classList.remove("escondido");
 }
 
 function pegarQuizzes(){
-    const promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
-    promisse.then(renderizarQuizzes)
+    const promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes");
+    promisse.then(renderizarQuizzes);
 }
 
 function renderizarQuizzes(elemento) {
     let quizzesArray = []
     quizzesArray = elemento.data;
-
     let containerQuizzes = document.querySelector('#quizzesOnline');
     containerQuizzes.innerHTML = " "
     for (let i = 0 ; i<quizzesArray.length ; i ++){
@@ -48,8 +45,8 @@ pegarQuizzes();
 
 function jogarQuizz(elemento){
     idqqqqq = elemento.querySelector(".id-quiz").innerHTML;
-    document.querySelector(".tela1").classList.add("escondido")
-    document.querySelector(".tela2").classList.remove("escondido")
+    document.querySelector(".tela1").classList.add("escondido");
+    document.querySelector(".tela2").classList.remove("escondido");
     document.querySelector(".quiz-top-bar").classList.remove("escondido");
     document.querySelector(".resultado-quiz").innerHTML = "";
     finalizarQuiz = "";
@@ -61,14 +58,12 @@ function jogarQuizz(elemento){
 
 function acessarQuizz() {
     let acessa = document.querySelector(".quizzes-finalizacao .id-quiz").innerHTML;
-    console.log(acessa)
     let promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${acessa}`);
     promise.then(renderizarQuizz);
     idqqqqq = acessa;
     document.querySelector(".tela3-4").classList.add("escondido");
     document.querySelector(".tela2").classList.remove("escondido");
     document.querySelector(".quiz-top-bar").classList.remove("escondido");
-
 }
 
 function voltarHomeTela3() {
@@ -88,7 +83,6 @@ function selecionarQuiz (elemento) {
     for(let i = 0; i < selecionado.length; i++){
         selecionado[i].classList.add("opacidade-white");
         selecionado[i].removeAttribute("onclick");
-
     }
 
     let procuraResposta = document.querySelectorAll(".opacidade-white > .verificacao");
@@ -112,7 +106,7 @@ function scrollar () {
 function resetarPaginaAtual (){
     document.querySelector(".container-quiz").innerHTML = "";
     document.querySelector(".resultado-quiz").innerHTML = "";
-    document.querySelector(".botao-home").classList.remove("escondido")
+    document.querySelector(".botao-home").classList.remove("escondido");
     finalizarQuiz = "";
     buscarQuizzId(idqqqqq);
     const elemento = document.querySelector(".sobreporImagem");
@@ -189,9 +183,7 @@ function mostrarResultado (){
     if(finalizarQuiz === verificarRespostas){
         document.querySelector(".resultado-quiz").classList.remove("escondido");
         document.querySelector(".botao-home").classList.add("escondido");
-
         let contadorCertos = 0;
-    
         let resultado = document.querySelectorAll(".selecionado.opacidade-white > .verificacao");
         for(let i = 0; i < resultado.length; i++){
             if(resultado[i].innerHTML === "true"){
@@ -654,7 +646,6 @@ function testePost(elemento) {
     document.querySelector(".tela3-3").classList.add("escondido");
     document.querySelector(".tela3-4").classList.remove("escondido");
     let teste = elemento.data;
-    //meuQuizz.push(teste.id);
     salvarId(teste.id);
 }
 
