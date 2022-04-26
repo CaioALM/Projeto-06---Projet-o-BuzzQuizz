@@ -13,6 +13,7 @@ let receberObjeto;
 let idqqqqq;
 const idUsuario = null;
 const meuQuizz = [];
+let ehTrue;
 
 function criarQuizz() {
     document.querySelector(".tela1").classList.add("escondido");
@@ -24,20 +25,34 @@ function pegarQuizzes(){
     promisse.then(renderizarQuizzes);
 }
 
-function renderizarQuizzes(elemento) {
-    let quizzesArray = []
-    quizzesArray = elemento.data;
-    let containerQuizzes = document.querySelector('#quizzesOnline');
-    containerQuizzes.innerHTML = " "
-    for (let i = 0 ; i<quizzesArray.length ; i ++){
-        containerQuizzes.innerHTML += `
-        <div class="quizzes" onclick="jogarQuizz(this)">
-        <img src="${quizzesArray[i].image}" alt="">
-        <div class="gradiente"></div>
-        <div class="textoImagem" >${quizzesArray[i].title}</div>
-        <div class="id-quiz">${quizzesArray[i].id}</div>
-        </div>
-        `;
+function renderizarQuizzes(elemento) {     
+    let quizzesArray = []     
+    quizzesArray = elemento.data;     
+    let containerQuizzes = document.querySelector('#quizzesOnline');     
+    containerQuizzes.innerHTML = " "     
+    for (let i = 0 ; i < quizzesArray.length ; i ++){         
+        containerQuizzes.innerHTML += `         
+        <div class="quizzes" onclick="jogarQuizz(this)">         
+            <img src="${quizzesArray[i].image}" alt="">         
+            <div class="gradiente"></div>         
+            <div class="textoImagem" >${quizzesArray[i].title}</div>         
+            <div class="id-quiz-todos">${quizzesArray[i].id}</div>         
+        </div>         
+        `;     
+    } 
+    procurarMeusQuiz();
+}
+
+function procurarMeusQuiz () {
+    let meusIds = localStorage.getItem("MeusQuizzes");
+    meusIds = JSON.parse(meusIds);
+    let todosIds = document.querySelectorAll(".id-quiz-todos");
+    for (let i = 0; i < todosIds.length; i++){
+        for (let j = 0; j < meusIds.length; j++){
+            if(Number(todosIds[i].innerHTML) === meusIds[j]){
+                todosIds[i].parentNode.classList.add("escondido");
+            }
+        }
     }
 }
 
