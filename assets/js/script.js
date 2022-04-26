@@ -1,6 +1,18 @@
 let linkTodosQuizzes = "https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes" // Para pega 1 só colocar o ID
-
-// TELA1
+let salvosID;
+let arrQuizz = {};
+let verificaPergunta;
+let verificaNiveis;
+let questions = [];
+let answers = [];
+let levels = [];
+let finalizarQuiz = 0;
+const TIME_2S = 2 * 1000;
+let verificarRespostas;
+let receberObjeto;
+let idqqqqq;
+const idUsuario = null;
+const meuQuizz = [];
 
 function criarQuizz() {
     let elemento = document.querySelector(".tela1")
@@ -9,21 +21,7 @@ function criarQuizz() {
     element.classList.remove("escondido")
 
 }
-const idUsuario = null;
-const meuQuizz = [];
 
-// function salvarId(id){
-//     idUsuario = {"id-usuário": id};
-// localStorage.setItem("MeusQuizzes", id)
-// }
-
-//function pegarMeuQuizz(){
-//    const requisicao = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',{ headers: idUsuario});
-//    requisicao.then(processarSucessoQuizz).catch(processarErroQuizz);
-//}
-
-
-//Função para renderizar quizzes
 function pegarQuizzes(){
     const promisse = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes")
     promisse.then(renderizarQuizzes)
@@ -31,7 +29,7 @@ function pegarQuizzes(){
 
     function renderizarQuizzes(elemento) {
         let quizzesArray = []
-        quizzesArray = elemento.data
+        quizzesArray = elemento.data;
 
         let containerQuizzes = document.querySelector('#quizzesOnline');
         containerQuizzes.innerHTML = " "
@@ -47,17 +45,20 @@ function pegarQuizzes(){
              `;
         }
 }
-pegarQuizzes()
 
-let idqqqqq;
+pegarQuizzes();
+
 function jogarQuizz(elemento){
-    console.log(elemento)
-    idqqqqq = elemento.querySelector(".id-quiz").innerHTML
-    console.log(idqqqqq)
+    idqqqqq = elemento.querySelector(".id-quiz").innerHTML;
     document.querySelector(".tela1").classList.add("escondido")
     document.querySelector(".tela2").classList.remove("escondido")
-    document.querySelector(".quiz-top-bar").classList.remove("escondido")
-    buscarQuizzId(idqqqqq)
+    document.querySelector(".quiz-top-bar").classList.remove("escondido");
+    document.querySelector(".resultado-quiz").innerHTML = "";
+    finalizarQuiz = "";
+    document.querySelector(".botao-home").classList.remove("escondido");
+    const scrollTop = document.querySelector(".quiz-top-bar");
+    scrollTop.scrollIntoView();
+    buscarQuizzId(idqqqqq);
 }
 
 function acessarQuizz() {
@@ -73,15 +74,6 @@ function voltarHomeTela3() {
     let element = document.querySelector(".tela1")
     element.classList.remove("escondido")
 }
-
-
-//TELA2
-
-let finalizarQuiz = 0;
-const TIME_2S = 2 * 1000;
-let verificarRespostas;
-let receberObjeto;
-
 
 function selecionarQuiz (elemento) {
     finalizarQuiz ++;
@@ -106,7 +98,6 @@ function selecionarQuiz (elemento) {
             trocarCor[i].classList.add("vermelho");
         }
     }
-
     setTimeout(scrollar, TIME_2S);
     mostrarResultado();
 }
@@ -116,9 +107,10 @@ function scrollar () {
     elemento.scrollIntoView();
 }
 
-
 function resetarPaginaAtual (){
     document.querySelector(".container-quiz").innerHTML = "";
+    document.querySelector(".resultado-quiz").innerHTML = "";
+    finalizarQuiz = "";
     buscarQuizzId(idqqqqq);
     const elemento = document.querySelector(".sobreporImagem");
     elemento.scrollIntoView();
@@ -128,12 +120,8 @@ function voltarHome () {
     document.querySelector(".quiz-top-bar").classList.add("escondido");
     document.querySelector(".tela2").classList.add("escondido");
     document.querySelector(".tela1").classList.remove("escondido");
+    pegarId()
 }
-
-//TELA2
-
-
-//buscar quiz
 
 function buscarQuizzId (elemento) {
     const promise = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${elemento}`);
@@ -154,7 +142,6 @@ function renderizarQuizz (elemento) {
 function renderizarQuizzCorpo (elemento) {
     let corpoQuizz = document.querySelector(".container-quiz");
     verificarRespostas = elemento.data.questions.length;
-    console.log(verificarRespostas)
     corpoQuizz.innerHTML = "";
     for(let i = 0; i < verificarRespostas; i++){
         corpoQuizz.innerHTML += `
@@ -170,7 +157,6 @@ function renderizarQuizzCorpo (elemento) {
         `;
     }
     renderizarQuizzPerguntas(elemento);
-    
 }
 
 function embaralhar() { 
@@ -183,7 +169,7 @@ function renderizarQuizzPerguntas (elemento) {
     while(cont < perguntasQuiz.length){
         const arrPerguntas = elemento.data.questions[cont].answers;
         arrPerguntas.sort(embaralhar);
-        for(let i = 0; i < elemento.data.questions[i].answers.length; i++) {
+        for(let i = 0; i < elemento.data.questions[cont].answers.length; i++) {
             perguntasQuiz[cont].innerHTML += `
                 <div class="ajusteQuiz" onclick="selecionarQuiz(this)">
                     <img src="${arrPerguntas[i].image}" alt="">
@@ -195,8 +181,6 @@ function renderizarQuizzPerguntas (elemento) {
         cont ++;
     }
 }
-
-
 
 function mostrarResultado (){
     if(finalizarQuiz === verificarRespostas){
@@ -237,16 +221,6 @@ function mostrarResultado (){
         `;
     }
 }
-
-//buscarQuizzId ();
-
-//TELA 3
-let arrQuizz = {};
-let verificaPergunta;
-let verificaNiveis;
-let questions = [];
-let answers = [];
-let levels = [];
 
 function verificarInput3a() {
     let teste;
@@ -304,8 +278,6 @@ function verificarInput3a() {
     }else {
         alert("Preencha os dados corretamente");
     }
-
-    console.log(arrQuizz)
 }
 
 function validarURL (elemento){
@@ -317,7 +289,6 @@ function validarCor (elemento) {
     let re = /^#[0-9a-f]{6}/i;
     return re.test(elemento);
 }
-
 
 function renderizarPerguntas () {
     for(let i = 2; i <= verificaPergunta; i++){
@@ -364,7 +335,6 @@ function renderizarPerguntas () {
         </div>
         `;
     }
-
 }
 
 function verificarInput3b () {
@@ -527,13 +497,9 @@ function verificarInput3b () {
         arrQuizz.questions = questions;
         document.querySelector(".tela3-2").classList.add("escondido");
         document.querySelector(".tela3-3").classList.remove("escondido");
-        renderizaNiveis ()
-        console.log(arrQuizz)
+        renderizaNiveis ();
     }
-    
-
 }
-
 
 function alternarPerguntas (elemento) {
     let checar = elemento.parentNode;
@@ -547,7 +513,6 @@ function alternarPerguntas (elemento) {
     }
     checar.querySelector(".tituloPergunta").classList.add("escondido");
     checar.querySelector(".inputPerguntas").classList.remove("escondido");
-
 }
 
 function renderizaNiveis () {
@@ -651,7 +616,6 @@ function verificarInput3c () {
                 minValue: verificaMinimo
             }
         };
-
         cont++;
     }
 
@@ -659,82 +623,80 @@ function verificarInput3c () {
     if(verificaZero.length !== 0){
         arrQuizz.levels = levels;
         postarQuizz()
-
-        console.log(arrQuizz)
     }else {
-        alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%")
+        alert("Deve existir pelo menos 1 nível cuja % de acerto mínima seja 0%");
     }
 }
 
 function postarQuizz() {
-    let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", arrQuizz)
+    let promisse = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", arrQuizz);
     promisse.then(testePost);
-
 }
-
 
 function testePost(elemento) {
     console.log(elemento)
     document.querySelector(".tela3-3").classList.add("escondido");
     document.querySelector(".tela3-4").classList.remove("escondido");
-    //elemento.data.id.push(meuQuizz);
-
-    //console.log(elemento.data.id)
     let teste = elemento.data;
-    
     meuQuizz.push(teste.id);
     salvarId(meuQuizz);
 }
 
-let arraySalvo = [];
- function salvarId(id) {
-     console.log(id)
-    let arraySalvoString = JSON.stringify(id);
-    localStorage.setItem("MeusQuizzes", arraySalvoString);
+function salvarId(id) {
+    let arraySalvo = [];
+    let teste;
+    if(localStorage.length === 0){
+        arraySalvo.push(id);
+        teste = JSON.stringify(arraySalvo);
+        localStorage.setItem("MeusQuizzes", teste);
+    }else{
+        arraySalvo = localStorage.getItem("MeusQuizzes");
+        arraySalvo = JSON.parse(arraySalvo);
+        arraySalvo.push(id);
+        teste = JSON.stringify(arraySalvo);
+        localStorage.setItem("MeusQuizzes", teste);
+    }
 }
 
 function pegarId(){
-let arraySalvoString = localStorage.getItem("MeusQuizzes");
-arraySalvo = JSON.parse(arraySalvoString)
+    let arraySalvoString = localStorage.getItem("MeusQuizzes");
+    salvosID = JSON.parse(arraySalvoString)
+    testarQuizUsuario();
 }
 
 function testarQuizUsuario() {
-
-    if (arraySalvo.length === 0){
-        document.querySelector("meusQuizzes-container").classList.add("escondido");
-        document.querySelector("meusQuizzes-container-vazio").classList.remove("escondido");
+    if (localStorage.length === 0){
+        document.querySelector(".meusQuizzes-container").classList.add("escondido");
+        document.querySelector(".meusQuizzes-container-vazio").classList.remove("escondido");
     } else {
-        document.querySelector("meusQuizzes-container-vazio").classList.add("escondido");
-        document.querySelector("meusQuizzes-container").classList.remove("escondido");
+        document.querySelector(".meusQuizzes-container-vazio").classList.add("escondido");
+        document.querySelector(".meusQuizzes-container").classList.remove("escondido");
         pegarMeusQuizzes();
-
     }
-
 }
+
 function pegarMeusQuizzes(){
-    for (let i = 0 ; i<arraySalvo.legnth ; i ++){
-        const promisse = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${arraySalvo[i]}`)
-        promisse.then(renderizarMeusQuizzes) 
-        function renderizarMeusQuizzes(elemento) {
-            let quizzesArray = []
-            let containerQuizzes = document.querySelector('.quizzesFundo');
-            containerQuizzes.innerHTML = " "
-            for(let i = 0 ; i<arraySalvo.length ; i++){
-                quizzesArray = elemento.data.id[arraySalvo]
-                    containerQuizzes.innerHTML += `
-                    <div class="quizzes" onclick="jogarQuizz(this)">
-                     <img src="${quizzesArray[i].image}" alt="">
-                    <div class="gradiente"></div>
-                    <div class="textoImagem" >${quizzesArray[i].title}</div>
-                    <div class="id-quiz">${quizzesArray[i].id}</div>
-                    </div>
-                    
-                     `;
-                }
-            }
+    document.querySelector('.quizzesFundo').innerHTML = "";
+    for (let i = 0 ; i < salvosID.length ; i ++){
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${salvosID[i]}`);
+        promisse.then(renderizarMeusQuizzes);
     }
     
 }
 
-testarQuizUsuario()
+function renderizarMeusQuizzes(elemento) {
+    let quizzesArray = [];
+    let containerQuizzes = document.querySelector('.quizzesFundo');
+    quizzesArray = elemento.data;
+        containerQuizzes.innerHTML += `
+            <div class="quizzes" onclick="jogarQuizz(this)">
+             <img src="${quizzesArray.image}" alt="">
+            <div class="gradiente"></div>
+            <div class="textoImagem" >${quizzesArray.title}</div>
+            <div class="id-quiz">${quizzesArray.id}</div>
+            </div>
+        `;
+}
+
+pegarId()
 
