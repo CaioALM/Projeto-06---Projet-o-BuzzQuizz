@@ -119,7 +119,7 @@ function scrollar () {
 
 function resetarPaginaAtual (){
     document.querySelector(".container-quiz").innerHTML = "";
-    buscarQuizzId(idqqqqq);//document.location.reload(true);
+    buscarQuizzId(idqqqqq);
     const elemento = document.querySelector(".sobreporImagem");
     elemento.scrollIntoView();
 }
