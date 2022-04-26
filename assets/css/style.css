@@ -52,6 +52,8 @@ h3 {
 }
 
 .container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -577,7 +579,7 @@ color: #FFFFFF;
 
 
 @media screen and (max-width: 1100px) {
-  .container-quiz, .resultado-quiz {
+  .container-quiz, .resultado-quiz{
     width: 100%;
     padding: 0;
   }
@@ -586,7 +588,7 @@ color: #FFFFFF;
     padding: 10px;
   }
 
-  .quiz-top > p {
+  .quiz-top > p, .quiz-top-bar > p{
     font-size: 19px;
   }
 
@@ -617,19 +619,74 @@ color: #FFFFFF;
     height: 255px;
   }
 
-  .container-tela3-1, .container-tela3-2, .container-tela3-3, .rederizarPerguntas, .inputPerguntas, .rederizarPerguntas, .rederizarNiveis, .container-tela3-3 {
+  .container-tela3-1, .container-tela3-2, .container-tela3-3, .rederizarPerguntas, .inputPerguntas, .rederizarPerguntas, .rederizarNiveis, .container-tela3-3, .meusQuizzes-container, .quizzesFundo, .todosQuizzes-container,.quizzes-finalizacao {
     width: 100%;
   }
 
-  .container-tela3-1 > p, .container-tela3-2 > p, .container-tela3-3 > p {
+  .container-tela3-1 > p, .container-tela3-2 > p, .container-tela3-3 > p, h4{
     font-size: 20px;
   }
 
-  .botao-tela3-1, .botao-tela3-2, .botao-tela3-3 {
+  .botao-tela3-1, .botao-tela3-2, .botao-tela3-3, .botao-tela3-4 {
     width: 324px;
   }
+
+  .meusQuizzes-container-vazio {
+    width: 340px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .criar-quizz{
+    display: flex;
+    justify-content: space-between;
+    width: 100%
+  }
+  .quizzes{
+    display: flex;
+    flex-direction: column;
+  }
+.quizzesFundo {
+  flex-direction: column;
+}
+
+.quizzes{
+  margin: 0 auto 15px auto;
+}
+.criar-quizz {
+   padding: 0 10px;
+}
+
+.quizzes-finalizacao > img, .quizzes-finalizacao, .gradiente-finalizacao, .textoImagem-finalizacao {
+ width: 340px;
+ height: 181px;
+}
+.escondido{
+  display: none;
+}
+.quiz-top-bar > img, .sobreporImagem, .quiz-top-bar {
+  height: 142px;
+}
+.quiz-top-bar > img{
+  margin-left: 15px;
+}
+
+.container-quiz {
+  margin: 250px auto 0 auto;
+}
+.espacamento {
+  margin-bottom: 50px;
+
+}
+.textoImagem-finalizacao {
+  width: 100%;
+  height: 0px;
+  margin-top: 140px;
+
+  word-break: break-all;
+
+}
+
 }
 
 /* tela2 */
-
-  
