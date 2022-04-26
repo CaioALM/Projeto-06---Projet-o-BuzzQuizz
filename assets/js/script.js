@@ -49,10 +49,10 @@ function pegarQuizzes(){
 }
 pegarQuizzes()
 
-
+let idqqqqq;
 function jogarQuizz(elemento){
     console.log(elemento)
-    let idqqqqq = elemento.querySelector(".id-quiz").innerHTML
+    idqqqqq = elemento.querySelector(".id-quiz").innerHTML
     console.log(idqqqqq)
     document.querySelector(".tela1").classList.add("escondido")
     document.querySelector(".tela2").classList.remove("escondido")
@@ -116,8 +116,10 @@ function scrollar () {
     elemento.scrollIntoView();
 }
 
+
 function resetarPaginaAtual (){
-    document.location.reload(true);
+    document.querySelector(".container-quiz").innerHTML = "";
+    buscarQuizzId(idqqqqq);//document.location.reload(true);
     const elemento = document.querySelector(".sobreporImagem");
     elemento.scrollIntoView();
 }
@@ -183,7 +185,7 @@ function renderizarQuizzPerguntas (elemento) {
         arrPerguntas.sort(embaralhar);
         for(let i = 0; i < elemento.data.questions[i].answers.length; i++) {
             perguntasQuiz[cont].innerHTML += `
-                <div onclick="selecionarQuiz(this)">
+                <div class="ajusteQuiz" onclick="selecionarQuiz(this)">
                     <img src="${arrPerguntas[i].image}" alt="">
                     <p>${arrPerguntas[i].text}</p>
                     <div class="verificacao">${arrPerguntas[i].isCorrectAnswer}</div>

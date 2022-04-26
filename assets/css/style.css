@@ -169,6 +169,10 @@ h2 {
   border-radius: 5px;
 }
 .textoImagem {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 310px;
   position: relative;
   margin-top: 140px;
   margin-left: 15px;
@@ -397,6 +401,10 @@ color: #FFFFFF;
   height: 175px;
 }
 
+.ajusteQuiz {
+  width: 330px;
+}
+
 .opacidade-black {
   opacity: 60%;
 }
@@ -585,6 +593,10 @@ color: #FFFFFF;
   .alter-quiz img, .alter-quizOk img {
     width: 163px;
     height: 112px;
+  }
+
+  .ajusteQuiz {
+    width: 163px;
   }
 
   .alter-quiz p, .alter-quizOk p {
