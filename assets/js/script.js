@@ -17,10 +17,10 @@ const meuQuizz = [];
 // localStorage.setItem("MeusQuizzes", id)
 // }
 
-function pegarMeuQuizz(){
-    const requisicao = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',{ headers: idUsuario});
-    requisicao.then(processarSucessoQuizz).catch(processarErroQuizz);
-}
+//function pegarMeuQuizz(){
+//    const requisicao = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes',{ headers: idUsuario});
+//    requisicao.then(processarSucessoQuizz).catch(processarErroQuizz);
+//}
 
 
 //Função para renderizar quizzes
@@ -680,10 +680,61 @@ function testePost(elemento) {
     //elemento.data.id.push(meuQuizz);
 
     //console.log(elemento.data.id)
-    let teste = elemento.data
+    let teste = elemento.data;
     
     meuQuizz.push(teste.id);
-    
-    console.log(meuQuizz);
+    salvarId(meuQuizz);
 }
+
+let arraySalvo = [];
+ function salvarId(id) {
+     console.log(id)
+    let arraySalvoString = JSON.stringify(id);
+    localStorage.setItem("MeusQuizzes", arraySalvoString);
+}
+
+function pegarId(){
+let arraySalvoString = localStorage.getItem("MeusQuizzes");
+arraySalvo = JSON.parse(arraySalvoString)
+}
+
+function testarQuizUsuario() {
+
+    if (arraySalvo.length === 0){
+        document.querySelector("meusQuizzes-container").classList.add("escondido");
+        document.querySelector("meusQuizzes-container-vazio").classList.remove("escondido");
+    } else {
+        document.querySelector("meusQuizzes-container-vazio").classList.add("escondido");
+        document.querySelector("meusQuizzes-container").classList.remove("escondido");
+        pegarMeusQuizzes();
+
+    }
+
+}
+function pegarMeusQuizzes(){
+    for (let i = 0 ; i<arraySalvo.legnth ; i ++){
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/${arraySalvo[i]}`)
+        promisse.then(renderizarMeusQuizzes) 
+        function renderizarMeusQuizzes(elemento) {
+            let quizzesArray = []
+            let containerQuizzes = document.querySelector('.quizzesFundo');
+            containerQuizzes.innerHTML = " "
+            for(let i = 0 ; i<arraySalvo.length ; i++){
+                quizzesArray = elemento.data.id[arraySalvo]
+                    containerQuizzes.innerHTML += `
+                    <div class="quizzes" onclick="jogarQuizz(this)">
+                     <img src="${quizzesArray[i].image}" alt="">
+                    <div class="gradiente"></div>
+                    <div class="textoImagem" >${quizzesArray[i].title}</div>
+                    <div class="id-quiz">${quizzesArray[i].id}</div>
+                    </div>
+                    
+                     `;
+                }
+            }
+    }
+    
+}
+
+testarQuizUsuario()
 
